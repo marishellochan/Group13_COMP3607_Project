@@ -8,7 +8,7 @@ public class GameData {
     private List<Question> questions;
 
     private GameData() {
-        questions = new ArrayList<>();
+        questions = new ArrayList<Question>();
     }
 
     public static GameData getInstance() {
