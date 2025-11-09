@@ -1,0 +1,106 @@
+Great approach! Here's how to set up a workflow where everyone works on their own branch but keeps main updated:
+
+## **Workflow for Each Team Member:**
+
+### **Initial Setup (One time):**
+```bash
+# Create and switch to your personal branch
+git checkout -b your-name-branch
+
+# Push your branch to remote
+git push -u origin your-name-branch
+```
+
+### **Daily Work Cycle:**
+
+**1. Start your work day - Get latest changes from main:**
+```bash
+# Make sure you're on your branch
+git checkout your-name-branch
+
+# Get latest changes from main into your branch
+git pull origin main
+```
+
+**2. Work on your changes:**
+```bash
+# Make your changes, then commit
+git add .
+git commit -m "Description of changes"
+
+# Push to your branch
+git push origin your-name-branch
+```
+
+**3. Push to main when ready:**
+```bash
+# First, get any new changes from main
+git pull origin main
+
+# Resolve conflicts if any, then:
+git add .
+git commit -m "Resolved conflicts" # (if there were conflicts)
+
+# Switch to main
+git checkout main
+
+# Pull latest main
+git pull origin main
+
+# Merge your branch into main
+git merge your-name-branch
+
+# Push to main
+git push origin main
+
+# Switch back to your branch
+git checkout your-name-branch
+
+# Update your branch with the latest main
+git pull origin main
+```
+
+## **Simpler Alternative - Using Rebase:**
+
+```bash
+# On your branch, get latest main changes
+git checkout your-name-branch
+git pull origin main --rebase
+
+# Push your branch
+git push origin your-name-branch
+
+# When ready to update main:
+git checkout main
+git pull origin main
+git merge your-name-branch --no-ff
+git push origin main
+
+# Back to your branch
+git checkout your-name-branch
+```
+
+## **Best Practice Rules for Your Team:**
+
+1. **Always work on your own branch** - never directly on main
+2. **Pull from main daily** to keep your branch updated
+3. **Before merging to main** - always pull main first
+4. **Communicate** before pushing to main to avoid conflicts
+5. **Keep branches synced** with main regularly
+
+## **Quick Command Aliases (Optional):**
+
+Add these to `.git/config` or `~/.gitconfig`:
+```bash
+[alias]
+    sync = !git checkout main && git pull origin main && git checkout - && git pull origin main
+    push-main = !git checkout main && git pull origin main && git merge --no-ff - && git push origin main && git checkout -
+```
+
+Then team members can just run:
+```bash
+git sync        # Updates their branch with main
+git push-main   # Merges their branch to main
+```
+
+Would you like me to create a simple guide document for your team with these steps?
