@@ -11,12 +11,31 @@ public class Question {
     private String optionC;
     private String optionD;
 
-    public Question(String questionText, int value, String optionA, String optionB, String optionC, String optionD, String answer, String category) {
-        this.questionText = questionText;
-        this.answer = answer;
-        this.value = value;
-        this.category = category;
+    public Question(){
         this.answered = false;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setAnswered() {
+        this.answered = true;
+    }
+
+    public void setOptions(String optionA, String optionB, String optionC, String optionD) {
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
@@ -45,5 +64,15 @@ public class Question {
     
     public boolean isAnswered() {
         return answered;
+    }
+
+    public String toString() {
+        return "Category: " + category + "\n" +
+               "Value: " + value + "\n" +
+               "Question: " + questionText + "\n" +
+               "A: " + optionA + "\n" +
+               "B: " + optionB + "\n" +
+               "C: " + optionC + "\n" +
+               "D: " + optionD + "\n";
     }
 }

@@ -21,4 +21,10 @@ public class GameData {
     public void addQuestion(Question question) {
         questions.add(question);
     }
+
+    public void printQuestions() {
+        for (Question q : questions) {
+            System.out.println(q);
+        }
+    }
 }
