@@ -42,7 +42,6 @@ public class LoadDataXML extends TemplateLoadData {
 
     @Override
     protected void parseAndStoreData() throws NoDataException {
-        // TODO Auto-generated method stub
         System.out.println("Storing XML data...");
 
         GameData gameData = GameData.getInstance();

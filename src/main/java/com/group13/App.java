@@ -2,6 +2,7 @@ package com.group13;
 
 import com.group13.TemplatePattern_LoadData.LoadDataCSV;
 import com.group13.TemplatePattern_LoadData.LoadDataXML;
+import com.group13.TemplatePattern_LoadData.LoadDataJSON;
 import com.group13.Singelton.GameData;
 /**
  * Hello world!
@@ -17,8 +18,13 @@ public class App
         // LoadDataCSV loadDataCSV = new LoadDataCSV();
         // loadDataCSV.loadData(); 
 
-        LoadDataXML loadDataXML = new LoadDataXML();
-        loadDataXML.loadData();
+        // LoadDataXML loadDataXML = new LoadDataXML();
+        // loadDataXML.loadData();
+
+        LoadDataJSON loadDataJSON = new LoadDataJSON();
+        loadDataJSON.loadData();
+
+
         gameData.printQuestions();
         
     }
