@@ -1,9 +1,12 @@
 package com.group13.Players;
 
+import com.group13.State.PlayerState;
+
 public class Player {
     private String playerId;
     private String playerName;
     private int score;
+    private PlayerState state;
 
     //this is the constrcutor
     public Player(String playerId, String playerName) {
@@ -36,6 +39,14 @@ public class Player {
     @Override
     public String toString(){
         return "Player ID: "+playerId+", Player Name: "+playerName+", Score: "+score;
+    }
+
+    public void setState(PlayerState state) {
+        this.state = state;
+    }
+
+    public PlayerState getState() {
+        return state;
     }
 }
 
