@@ -5,6 +5,7 @@ import com.group13.State.*;
 public class Game {
 
     private static Game instance;
+    private PlayerTurnManager playerTurnManager;
     private GameState state;
 
     private Game() {
@@ -16,6 +17,10 @@ public class Game {
             instance = new Game();
         }
         return instance;
+    }
+
+    public void setTurnManager(PlayerTurnManager ptm) {
+        this.playerTurnManager = ptm;
     }
 
 
