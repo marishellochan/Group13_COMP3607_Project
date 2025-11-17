@@ -1,5 +1,5 @@
 package com.group13.State;
-
+import com.group13.ExceptionHandling.IllegalStateException;
 public class EndState extends GameState {
 
     @Override
