@@ -15,7 +15,18 @@ public class BeginningState extends GameState {
     }
 
     @Override
+    void playgame() throws IllegalStateException {
+        throw new IllegalStateException("Cannot play game from Beginning State.");
+    }
+
+    @Override
     void endgame() throws IllegalStateException {
-        \throw new IllegalStateException("Cannot end game from Beginning State.");
+        throw new IllegalStateException("Cannot end game from Beginning State.");
         // Implementation for ending the game from beginning state
     }
+
+    @Override
+    void generateReport() throws IllegalStateException {
+        throw new IllegalStateException("Cannot generate report from Beginning State.");
+    }
+}
