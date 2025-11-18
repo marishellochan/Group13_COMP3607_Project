@@ -2,10 +2,14 @@ package com.group13.Singelton;
 
 import com.group13.State.*;
 
-public class Game {
+import  com.group13.Logging.*;
+import com.group13.Observer.*;
+
+public class Game implements Subject { // Marishel : the game is the subject so whenever an action is done, it will notify its EventLogger
 
     private static Game instance;
     private PlayerTurnManager playerTurnManager;
+    private Observer eventLogger; // Marishel : the observer to log events
     private GameState state;
 
     private Game() {
@@ -55,6 +59,18 @@ public class Game {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void registerEventLogger(Observer o) {
+        // Implementation here
+    }
+
+    public void removeEventLogger(Observer o) {
+        // Implementation here
+    }
+
+    public void notifyEventLogger(LogEntry entry) {
+        // Implementation here
     }
 
     
