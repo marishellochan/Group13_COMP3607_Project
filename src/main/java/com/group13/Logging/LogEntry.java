@@ -1,15 +1,43 @@
 package com.group13.Logging;
 
 public class LogEntry {
-    private String gameId = "Game01";
-    private String playerId = " Player1";
+    private String gameId;
+    private String playerId;
     private String activity;
-    private String category = "";
-    private int questionValue= 0;
-    private String answer = "";
-    private String result = "";
-    private int score = 0;
+    private String category;
+    private int questionValue;
+    private String answer;
+    private String result;
+    private int score;
     
+    //default constructor with empty log entry
+    public LogEntry() {
+        this.gameId = "";
+        this.playerId = "";
+        this.activity = "";
+        this.category = "";
+        this.questionValue = 0;
+        this.answer = "";
+        this.result = "";
+        this.score = 0;
+    }
+
+    //constructor instead of hardcoded details
+    public LogEntry(String gameId, String playerId, String activity, String category, int questionValue, String answer, String result, int score){
+        this.gameId=gameId;
+        this.playerId = playerId;
+        this.activity = activity;
+        this.category = category;
+        this.questionValue = questionValue;
+        this.answer = answer;
+        this.result = result;
+        this.score = score;
+    }
+
+    //basic log entry
+    public LogEntry(String gameId, String playerId, String activity){
+        this(gameId, playerId, activity, "", 0, "", "", 0);
+    }
 
 //we have getters cus Marishel say to access data from here
 //to pass into log function as parameters
@@ -26,7 +54,6 @@ public class LogEntry {
     }
     public String getResult(){return result;
     }
-
     public int getScore(){ return score;
     }
 
@@ -47,5 +74,4 @@ public class LogEntry {
     }
     public void setScore(int score){ this.score=score;
     }
-
 }

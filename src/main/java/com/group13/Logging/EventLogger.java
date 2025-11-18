@@ -11,6 +11,7 @@ public class EventLogger {
     private static EventLogger logger; //singletion instance
     private FileWriter writer;
     private String logFile = "event_log.csv";
+    private String currentGameId = "Game01"; //default
 
     private EventLogger(){
         try{File file = new File(logFile);
@@ -19,7 +20,8 @@ public class EventLogger {
             
             //put headings if new file
             if(!fileExists){
-                writer.write("Case ID, Player ID, Activity, Timestamp, Category, Question Valie, Answer Given, Result, Score After");
+                //add underscores for CSV, also to match project
+                writer.write("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play\n");
               
                 writer.flush();//write immediately
             }
@@ -36,6 +38,17 @@ public class EventLogger {
         return logger;
     }
 
+    public void setGameId(String gameId) {
+        this.currentGameId = gameId;
+    }
+
+    //refactored log function
+    public void log(LogEntry entry){
+        log(entry.getGameId(), entry.getPlayerId(), entry.getActivity(), 
+        entry.getCategory(), entry.getQuestionValue(), entry.getAnswer(), 
+        entry.getResult(), entry.getScore());
+    }
+
     //This is where we log the events, so we need a lot of paramters for info
     public void log(String gameId, String playerId, String activity, String category, int questionValue, String answer, String result, int score){
         try{
@@ -48,6 +61,22 @@ public class EventLogger {
         }catch(IOException e){
             System.out.println("Write error: "+e.getMessage());
         }
+    }
+
+    public void logSystemEvent(String activity){
+        log(currentGameId, "System", activity, "", 0, "", "", 0);
+    }
+
+    public void logPlayerJoined(String playerId, String playerName){
+        log(currentGameId, playerId, "Enter Player Name", "", 0,"", "", 0);
+    }
+
+    public void logSelectCategory(String playerId, String category) {
+        log(currentGameId, playerId, "Select Category", category, 0, "", "", 0);
+    }
+
+    public void logSelectQuestion(String playerId, String category, int value) {
+        log(currentGameId, playerId, "Select Question", category, value, "", "", 0);
     }
 
     //close when game ends
