@@ -1,32 +1,47 @@
 package com.group13.State;
 
+import com.group13.Singelton.Game;
+
 public class BeginningState extends GameState {
 
+    // public BeginningState() {
+    //     // Initialization code for Beginning State
+
+    // }
+
+    // @Override
+    // public void handleGame(Game game ){
+    //     game.setState(new BeginningState());
+    //     System.out.println("Loading game from Beginning State...");
+    //     loadData(game);
+    //     // load game data 
+    // }
+
+    // public void loadData(Game game){
+    //     // implement loading of data
+    // }
+
+    // public void startGame(Game game){
+    //     game.setState(new PlayState());
+    //    game.getState().handleGame(game);
+    // }
+
     @Override
-    void loadgame() throws IllegalStateException {
+    public void startgame(Game game) {
+        game.setState(new PlayState());
+        System.out.println("Starting game from Beginning State...");
+    }
+
+    @Override
+    public void endgame(Game game) {
+    }
+
+    @Override
+    public void loadgame(Game game) {
+        game.setState(new BeginningState());
         System.out.println("Loading game from Beginning State...");
-        // load game data 
+        //load game data here 
     }
 
-    @Override
-    void startgame() throws IllegalStateException {
-        // start game and transition to PlayState
-        // Implementation for starting the game from beginning state
-    }
-
-    @Override
-    void playgame() throws IllegalStateException {
-        throw new IllegalStateException("Cannot play game from Beginning State.");
-    }
-
-    @Override
-    void endgame() throws IllegalStateException {
-        throw new IllegalStateException("Cannot end game from Beginning State.");
-        // Implementation for ending the game from beginning state
-    }
-
-    @Override
-    void generateReport() throws IllegalStateException {
-        throw new IllegalStateException("Cannot generate report from Beginning State.");
-    }
+    
 }
