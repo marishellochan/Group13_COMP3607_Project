@@ -5,6 +5,10 @@ import com.group13.Players.Player;
 
 public class PlayerTurnManager {
     private static PlayerTurnManager instance;
+    private static final int MAX_PLAYERS = 4;
+    private static final int MIN_PLAYERS = 2;
+    private int currentNumberOfPlayers;
+    private Player currentPlayer;
     private List<Player> players;
 
     private PlayerTurnManager() {

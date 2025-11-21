@@ -11,9 +11,15 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private PlayerTurnManager playerTurnManager;
     private Observer eventLogger; // Marishel : the observer to log events
     private GameState state;
+    private GameData gameData;
+
+    private static final int MAX_PLAYERS = 4;
+    private static final int MIN_PLAYERS = 2;
+    private int currentNumberOfPlayers;
 
     private Game() {
         // Private constructor to prevent instantiation
+        this.state = new BeginningState(); // Initial state
     }
 
     public static Game getInstance() {
@@ -71,6 +77,10 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     public void notifyEventLogger(LogEntry entry) {
         // Implementation here
+    }
+
+    public void setGameData(GameData data){
+        this.gameData = data;
     }
 
     

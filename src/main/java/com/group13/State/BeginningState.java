@@ -1,47 +1,47 @@
 package com.group13.State;
 
 import com.group13.Singelton.Game;
-
+import com.group13.Singelton.GameData;
+import com.group13.TemplatePattern_LoadData.*;
+import com.group13.ExceptionHandling.IllegalStateException;
 public class BeginningState extends GameState {
 
-    // public BeginningState() {
-    //     // Initialization code for Beginning State
-
-    // }
-
-    // @Override
-    // public void handleGame(Game game ){
-    //     game.setState(new BeginningState());
-    //     System.out.println("Loading game from Beginning State...");
-    //     loadData(game);
-    //     // load game data 
-    // }
-
-    // public void loadData(Game game){
-    //     // implement loading of data
-    // }
-
-    // public void startGame(Game game){
-    //     game.setState(new PlayState());
-    //    game.getState().handleGame(game);
-    // }
-
     @Override
-    public void startgame(Game game) {
+    public void startgame(Game game) throws IllegalStateException {
         game.setState(new PlayState());
         System.out.println("Starting game from Beginning State...");
+        
     }
 
     @Override
-    public void endgame(Game game) {
+    public void endgame(Game game) throws IllegalStateException {
+        throw new IllegalStateException("Cannot end game from Beginning State.");
     }
 
     @Override
-    public void loadgame(Game game) {
-        game.setState(new BeginningState());
-        System.out.println("Loading game from Beginning State...");
-        //load game data here 
+    public void loadgame(Game game) throws IllegalStateException {
+        TemplateLoadData loadDataMethod = chooseLoadDataTemplate();
+        loadDataMethod.loadData();
+        set_Players(game);
+    
+
+        //load game data here
+        
     }
+
+    public TemplateLoadData chooseLoadDataTemplate(){
+        
+        // click of button to choose load data template
+    }
+
+    public int getPlayerNumber(){
+        // get number of players from user input
+    }
+
+    public void set_Players(Game game){
+        // create players and set them in PlayerTurnManager
+    }
+
 
     
 }

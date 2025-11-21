@@ -3,14 +3,14 @@ package com.group13.Players;
 import com.group13.State.PlayerState;
 
 public class Player {
-    private String playerId;
+    private static int playerId = 0; // Static variable to keep track of player IDs
     private String playerName;
     private int score;
     private PlayerState state;
 
     //this is the constrcutor
-    public Player(String playerId, String playerName) {
-        this.playerId = playerId;
+    public Player(String playerName) {
+        this.playerId++;
         this.playerName = playerName;
         this.score = 0; // Initial score 0
     }
@@ -21,7 +21,7 @@ public class Player {
     }
 
     //getter for id
-    public String getPlayerId(){
+    public int getPlayerId(){
         return playerId;
     }
 
