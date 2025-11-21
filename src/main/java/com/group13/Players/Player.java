@@ -10,7 +10,7 @@ public class Player {
 
     //this is the constrcutor
     public Player(String playerName) {
-        this.playerId++;
+        playerId++; // Marishel : let the id increment for each new player
         this.playerName = playerName;
         this.score = 0; // Initial score 0
     }

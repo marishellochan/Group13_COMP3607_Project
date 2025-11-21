@@ -35,12 +35,21 @@ public class PlayState extends GameState {
     public void endgame(Game game) throws IllegalStateException {
         game.setState(new EndState());
         System.out.println("Ending game from Play State...");
+        generateReport(game);
     }
 
     @Override
     public void loadgame(Game game) throws IllegalStateException {
         throw new IllegalStateException("Cannot load game while in Play State.");
     }
+
+    public void generateReport(Game game){
+        // implement report generation logic
+        // player has to choose what strategy to use for report generation
+    }
+
+
+
 
 
 }

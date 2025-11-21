@@ -4,12 +4,18 @@ import com.group13.Singelton.Game;
 import com.group13.Singelton.GameData;
 import com.group13.TemplatePattern_LoadData.*;
 import com.group13.ExceptionHandling.IllegalStateException;
+import com.group13.Players.Player;
+import com.group13.Singelton.PlayerTurnManager;
+import java.util.ArrayList;
+
 public class BeginningState extends GameState {
 
     @Override
     public void startgame(Game game) throws IllegalStateException {
         game.setState(new PlayState());
         System.out.println("Starting game from Beginning State...");
+        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
+        // ptm.set_Players(); // set players in PlayerTurnManager
         
     }
 
@@ -20,27 +26,16 @@ public class BeginningState extends GameState {
 
     @Override
     public void loadgame(Game game) throws IllegalStateException {
-        TemplateLoadData loadDataMethod = chooseLoadDataTemplate();
-        loadDataMethod.loadData();
-        set_Players(game);
+        // TemplateLoadData loadDataMethod = chooseLoadDataTemplate();
+        // loadDataMethod.loadData();
+    }
+
+    // public TemplateLoadData chooseLoadDataTemplate(){
+        
+    //     // click of button to choose load data template
+    // }
+
     
-
-        //load game data here
-        
-    }
-
-    public TemplateLoadData chooseLoadDataTemplate(){
-        
-        // click of button to choose load data template
-    }
-
-    public int getPlayerNumber(){
-        // get number of players from user input
-    }
-
-    public void set_Players(Game game){
-        // create players and set them in PlayerTurnManager
-    }
 
 
     

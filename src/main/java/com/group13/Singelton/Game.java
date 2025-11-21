@@ -13,9 +13,6 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private GameState state;
     private GameData gameData;
 
-    private static final int MAX_PLAYERS = 4;
-    private static final int MIN_PLAYERS = 2;
-    private int currentNumberOfPlayers;
 
     private Game() {
         // Private constructor to prevent instantiation
@@ -31,6 +28,10 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     public void setTurnManager(PlayerTurnManager ptm) {
         this.playerTurnManager = ptm;
+    }
+
+    public PlayerTurnManager getTurnManager() {
+        return this.playerTurnManager;
     }
 
 

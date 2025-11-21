@@ -43,11 +43,11 @@ public class EventLogger {
     }
 
     //refactored log function
-    public void log(LogEntry entry){
-        log(entry.getGameId(), entry.getPlayerId(), entry.getActivity(), 
-        entry.getCategory(), entry.getQuestionValue(), entry.getAnswer(), 
-        entry.getResult(), entry.getScore());
-    }
+    // public void log(LogEntry entry){
+    //     log(entry.getGameId(), entry.getPlayerId(), entry.getActivity(), 
+    //     entry.getCategory(), entry.getQuestionValue(), entry.getAnswer(), 
+    //     entry.getResult(), entry.getScore());
+    // }
 
     //This is where we log the events, so we need a lot of paramters for info
     public void log(String gameId, String playerId, String activity, String category, int questionValue, String answer, String result, int score){
