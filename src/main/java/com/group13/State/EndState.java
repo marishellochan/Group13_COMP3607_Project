@@ -1,6 +1,7 @@
 package com.group13.State;
 
 import com.group13.Singelton.Game;
+import com.group13.TemplatePattern_LoadData.TemplateLoadData;
 public class EndState extends GameState {
 
 //    @Override
@@ -24,14 +25,10 @@ public class EndState extends GameState {
     }
 
     @Override
-    public void loadgame(Game game) throws IllegalStateException {
+    public void loadgame(Game game, TemplateLoadData template) throws IllegalStateException {
         throw new IllegalStateException("Cannot load game from End State.");
     }
 
-    
-
-   
-
-    
+ 
     
 }

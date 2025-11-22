@@ -2,6 +2,7 @@ package com.group13.State;
 
 import com.group13.ExceptionHandling.IllegalStateException;
 import com.group13.Singelton.Game;
+import com.group13.TemplatePattern_LoadData.TemplateLoadData;
 
 public class PlayState extends GameState {
     
@@ -39,7 +40,7 @@ public class PlayState extends GameState {
     }
 
     @Override
-    public void loadgame(Game game) throws IllegalStateException {
+    public void loadgame(Game game, TemplateLoadData template) throws IllegalStateException {
         throw new IllegalStateException("Cannot load game while in Play State.");
     }
 
@@ -47,9 +48,6 @@ public class PlayState extends GameState {
         // implement report generation logic
         // player has to choose what strategy to use for report generation
     }
-
-
-
 
 
 }

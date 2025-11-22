@@ -25,15 +25,14 @@ public class BeginningState extends GameState {
     }
 
     @Override
-    public void loadgame(Game game) throws IllegalStateException {
-        // TemplateLoadData loadDataMethod = chooseLoadDataTemplate();
-        // loadDataMethod.loadData();
+    public void loadgame(Game game , TemplateLoadData template) throws IllegalStateException {
+        System.out.println("Loading game data in Beginning State...");
+        template.loadData();
+        
+        
     }
 
-    // public TemplateLoadData chooseLoadDataTemplate(){
-        
-    //     // click of button to choose load data template
-    // }
+   
 
     
 
