@@ -41,9 +41,7 @@ public class LoadDataScreen extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public LoadDataScreen() {
 
         setSize(new Dimension(483, 341));
