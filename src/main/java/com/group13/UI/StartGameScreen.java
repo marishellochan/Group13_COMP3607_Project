@@ -1,75 +1,76 @@
 package com.group13.UI;
 
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import java.awt.Color;
 
-import java.awt.Font;
+import com.group13.Players.Player;
+import com.group13.Singelton.PlayerTurnManager;
 
-import com.group13.State.*;
-import com.group13.Singelton.*;
-import com.group13.TemplatePattern_LoadData.*;
+public class StartGameScreen extends JPanel {
 
-public class StartGameScreen extends JFrame {
+    private JButton[] playerButtons = new JButton[4];
+    private int playerButtonCount = 0;
 
-	private JPanel contentPane;
-   
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartGameScreen frame = new StartGameScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public StartGameScreen(MainFrame frame) {
 
-	
+        setLayout(new GridLayout(2, 2, 10, 10));
+        setBackground(Color.RED);
 
-	
-	public StartGameScreen() {
+        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
 
-        setSize(new Dimension(483, 341));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(150, 150, 500, 500);
+        // Create the buttons
+        for (Player player : ptm.getPlayers()) {
 
-        contentPane = new JPanel();
-        contentPane.setBackground(new Color(255, 0, 0));
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(null);
-        setContentPane(contentPane);
+            JButton btn = new JButton(player.getPlayerName());
+            btn.setFont(new Font("Tahoma", Font.BOLD, 20));
+            btn.setEnabled(false);
 
-        JButton btnLoad = new JButton("Start Game !");
-        btnLoad.setFont(new Font("Tahoma", Font.BOLD, 16));
-        btnLoad.setBounds(172, 180, 150, 50);
-        btnLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				handleLoadButtonClick();
-			}
-		});
-        contentPane.add(btnLoad);
+            int index = playerButtonCount;   // store current index
+
+            btn.addActionListener(e -> {
+                if (player != ptm.getCurrentPlayer()) {
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "It is not your turn yet!",
+                            "Hold on!",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                } else {
+                    frame.showCategoryScreen();
+                }
+            });
+
+            playerButtons[playerButtonCount] = btn;
+            playerButtonCount++;
+
+            add(btn);
+        }
+
+        updateVisiblePlayers(ptm.getPlayers().size(), ptm.getPlayers());
+        updateTurnUI(ptm.getPlayers().size());
     }
 
-    private void handleLoadButtonClick() {
-        
+    private void updateVisiblePlayers(int playerCount, List<Player> players) {
+        for (int i = 0; i < 4; i++) {
+            if (i < playerCount) {
+                playerButtons[i].setVisible(true);
+                playerButtons[i].setText(players.get(i).getPlayerName());
+            } else {
+                if (playerButtons[i] != null)
+                    playerButtons[i].setVisible(false);
+            }
+        }
     }
 
-
-
+    private void updateTurnUI(int playerCount) {
+        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
+        for (int i = 0; i < playerCount; i++) {
+            playerButtons[i].setEnabled(i + 1 == ptm.getCurrentTurn());
+        }
+    }
 }

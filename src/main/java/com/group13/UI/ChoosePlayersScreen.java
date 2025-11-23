@@ -24,7 +24,7 @@ public class ChoosePlayersScreen extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.RED);
 
-        // ================= TOP PANEL =================
+        // this part shows the title and spinner to choose number of players
         JPanel topPanel = new JPanel();
         topPanel.setOpaque(false);
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
@@ -46,7 +46,7 @@ public class ChoosePlayersScreen extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // ================= CENTER PANEL =================
+        // this is where the text fields will go 
         playerFieldsPanel = new JPanel();
         playerFieldsPanel.setLayout(new BoxLayout(playerFieldsPanel, BoxLayout.Y_AXIS));
         playerFieldsPanel.setOpaque(false);
@@ -54,17 +54,17 @@ public class ChoosePlayersScreen extends JPanel {
 
         add(playerFieldsPanel, BorderLayout.CENTER);
 
-        // Initialize 2 fields
+        // make sure we have a minimum of 2 player fields at start
         updatePlayerFields(2);
 
-        // Spinner listener
+        // Spinner listener which update and give the text fields for the player names 
         spinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 updatePlayerFields((int) spinner.getValue());
             }
         });
 
-        // ================= BOTTOM BUTTON PANEL =================
+       // this is the bottom section panel that holds the start game button
         JPanel bottomPanel = new JPanel();
         bottomPanel.setOpaque(false);
         bottomPanel.setBorder(new EmptyBorder(10, 10, 20, 10));
@@ -82,7 +82,7 @@ public class ChoosePlayersScreen extends JPanel {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    // ================= UPDATE TEXT FIELDS =================
+    // this method updates the text fields for player names based on the selected count
     private void updatePlayerFields(int count) {
         playerFieldsPanel.removeAll();
 
@@ -105,18 +105,19 @@ public class ChoosePlayersScreen extends JPanel {
         // Logic to start the game with entered player names
         int playerCount = playerFieldsPanel.getComponentCount() / 2; // each field + spacer
         ArrayList<Player> players = new ArrayList<>();
+        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
 
         for (int i = 0; i < playerCount; i++) {
             JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
             players.add(new Player(tf.getText().trim()));
+            if(i ==0){
+                ptm.setCurrentPlayer(players.get(0));
+            }
         }
-
-        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
         ptm.set_Players(players);
 
         ptm.getPlayers().forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
-
-        // Instead of disposing, tell MainFrame to move to the next screen
+        frame.showStartGameScreen();
         
     }
 }

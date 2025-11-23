@@ -12,11 +12,9 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Use BorderLayout for flexibility
         contentPane = new JPanel(new BorderLayout());
         setContentPane(contentPane);
 
-        // Start with LoadDataScreen
         showLoadDataScreen();
 
         setVisible(true);
@@ -36,6 +34,19 @@ public class MainFrame extends JFrame {
         contentPane.add(new ChoosePlayersScreen(this), BorderLayout.CENTER);
         contentPane.revalidate();
         contentPane.repaint();
+    }
+
+    // Switch to StartGameScreen
+    public void showStartGameScreen() {
+        contentPane.removeAll();
+        contentPane.add(new StartGameScreen(this), BorderLayout.CENTER);
+        contentPane.revalidate();
+        contentPane.repaint();
+    }
+
+    public void showCategoryScreen() {
+        // Placeholder for category screen transition
+        JOptionPane.showMessageDialog(this, "Category Screen would be shown here.");
     }
 
     public static void main(String[] args) {

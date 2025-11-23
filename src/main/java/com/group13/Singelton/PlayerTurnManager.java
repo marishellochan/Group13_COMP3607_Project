@@ -9,6 +9,7 @@ public class PlayerTurnManager {
     private static final int MAX_PLAYERS = 4;
     private static final int MIN_PLAYERS = 2;
     private int currentNumberOfPlayers;
+    private int currentTurn = 1;
     private Player currentPlayer;
     private List<Player> players;
 
@@ -23,24 +24,9 @@ public class PlayerTurnManager {
         return instance;
     }
 
-    // public int getPlayerNumber(){
-    //     // get number of players from user input button
-    // }
-
-    // public void set_Players(){
-    //     // create players and set them in PlayerTurnManager
-    //     int numPlayers = getPlayerNumber();
-    //     ArrayList<Player> players = new ArrayList<>();
-    //     for(int i = 1; i <= numPlayers; i++){
-    //         // read player name from iput MUST CHange LATER
-    //         Player player = new Player("NamePlayer"+i);
-    //         players.add(player);
-    //     }
-    //     this.players = players;
-    // }
-
     public void set_Players(ArrayList<Player> players){
         this.players = players;
+        this.currentNumberOfPlayers = players.size();
     }
 
     public List<Player> getPlayers() {
@@ -49,6 +35,18 @@ public class PlayerTurnManager {
 
     public void turn() {
         // implement some logic to manage player turns 
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public int getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void setCurrentPlayer(Player player) {
+        this.currentPlayer = player;
     }
 
 

@@ -3,9 +3,6 @@ package com.group13.Singelton;
 import com.group13.State.*;
 import com.group13.TemplatePattern_LoadData.TemplateLoadData;
 
-import javax.swing.SwingUtilities;
-import com.group13.UI.LoadDataScreen;
-
 import  com.group13.Logging.*;
 import com.group13.Observer.*;
 
