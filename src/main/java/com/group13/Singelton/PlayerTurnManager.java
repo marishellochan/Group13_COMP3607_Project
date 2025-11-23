@@ -39,6 +39,10 @@ public class PlayerTurnManager {
     //     this.players = players;
     // }
 
+    public void set_Players(ArrayList<Player> players){
+        this.players = players;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

@@ -20,73 +20,56 @@ import com.group13.State.*;
 import com.group13.Singelton.*;
 import com.group13.TemplatePattern_LoadData.*;
 
-public class LoadDataScreen extends JFrame {
+public class LoadDataScreen extends JPanel {
 
-	private JPanel contentPane;
 	private JComboBox<String> dataTypeCombo;
-   
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoadDataScreen frame = new LoadDataScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
-	public LoadDataScreen() {
-
-        setSize(new Dimension(483, 341));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(150, 150, 500, 500);
-
-        contentPane = new JPanel();
-        contentPane.setBackground(new Color(0, 128, 255));
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(null);
-        setContentPane(contentPane);
+	public LoadDataScreen(MainFrame frame) {
+        setBackground(new Color(0, 128, 255));
+        setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLayout(null);
 
         JButton btnLoad = new JButton("Load Game Data");
         btnLoad.setFont(new Font("Tahoma", Font.BOLD, 16));
         btnLoad.setBounds(172, 180, 150, 50);
         btnLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				handleLoadButtonClick();
-			}
-		});
-        contentPane.add(btnLoad);
+            public void actionPerformed(ActionEvent e) {
+                handleLoadButtonClick(frame);
+            }
+        });
+        add(btnLoad);
 
         JLabel label = new JLabel("Select File to Load Game Data from:");
-        label.setBounds(172, 250, 200, 25);
-        contentPane.add(label);
+        label.setBounds(172, 250, 250, 25);
+        add(label);
 
         dataTypeCombo = new JComboBox<>(new String[]{"XML", "CSV", "JSON"});
         dataTypeCombo.setBounds(172, 280, 150, 25);
-        contentPane.add(dataTypeCombo);
+        add(dataTypeCombo);
     }
 
-    private void handleLoadButtonClick() {
+    private void handleLoadButtonClick(MainFrame frame) {
         String selectedType = (String) dataTypeCombo.getSelectedItem();
-		TemplateLoadData template = null;
-		switch(selectedType) {
-			case "XML": template = new LoadDataXML(); break;
-			case "CSV": template = new LoadDataCSV(); break;
-			case "JSON": template = new LoadDataJSON(); break;
-			default: System.out.println("Invalid selection"); return;
-		}
+        TemplateLoadData template = null;
+
+        switch (selectedType) {
+            case "XML": template = new LoadDataXML(); break;
+            case "CSV": template = new LoadDataCSV(); break;
+            case "JSON": template = new LoadDataJSON(); break;
+            default: System.out.println("Invalid selection"); return;
+        }
+
         Game game = Game.getInstance();
-		GameData gameData = GameData.getInstance();
-		game.load(template);
-		gameData.printQuestions();
+        GameData gameData = GameData.getInstance();
+        game.load(template);
+        gameData.printQuestions();
+
+        // Switch to ChoosePlayersScreen inside the same MainFrame
+        frame.showChoosePlayersScreen();
     }
+
+	
+
 
 
 

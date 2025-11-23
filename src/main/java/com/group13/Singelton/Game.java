@@ -88,20 +88,5 @@ public class Game implements Subject { // Marishel : the game is the subject so 
         this.gameData = data;
     }
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoadDataScreen().setVisible(true);
-            }
-        });
-    }
-
-    public void loadgame(Game game, TemplateLoadData template) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadgame'");
-    }
-
     
 }
