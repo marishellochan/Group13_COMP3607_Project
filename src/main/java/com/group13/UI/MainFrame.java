@@ -45,8 +45,10 @@ public class MainFrame extends JFrame {
     }
 
     public void showCategoryScreen() {
-        // Placeholder for category screen transition
-        JOptionPane.showMessageDialog(this, "Category Screen would be shown here.");
+        contentPane.removeAll();
+        contentPane.add(new CategoryScreen(this), BorderLayout.CENTER);
+        contentPane.revalidate();
+        contentPane.repaint();
     }
 
     public static void main(String[] args) {

@@ -27,4 +27,15 @@ public class GameData {
             System.out.println(q);
         }
     }
+
+    public List<String> getCategories() {
+        List<String> categories = new ArrayList<>();
+        for (Question q : questions) {
+            String category = q.getCategory();
+            if (!categories.contains(category)) {
+                categories.add(category);
+            }
+        }
+        return categories;
+    }
 }

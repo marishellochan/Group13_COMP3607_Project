@@ -14,9 +14,7 @@ public class BeginningState extends GameState {
     public void startgame(Game game) throws IllegalStateException {
         game.setState(new PlayState());
         System.out.println("Starting game from Beginning State...");
-        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
-        // ptm.set_Players(); // set players in PlayerTurnManager
-        
+      
     }
 
     @Override
@@ -28,8 +26,6 @@ public class BeginningState extends GameState {
     public void loadgame(Game game , TemplateLoadData template) throws IllegalStateException {
         System.out.println("Loading game data in Beginning State...");
         template.loadData();
-        
-        
     }
 
    

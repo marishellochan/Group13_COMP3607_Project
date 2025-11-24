@@ -32,17 +32,19 @@ public class StartGameScreen extends JPanel {
 
             int index = playerButtonCount;   // store current index
 
-            btn.addActionListener(e -> {
-                if (player != ptm.getCurrentPlayer()) {
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "It is not your turn yet!",
-                            "Hold on!",
+            btn.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (player != ptm.getCurrentPlayer()) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "It is not your turn yet!",
+                                "Hold on!",
                             JOptionPane.WARNING_MESSAGE
                     );
                 } else {
                     frame.showCategoryScreen();
                 }
+             }
             });
 
             playerButtons[playerButtonCount] = btn;

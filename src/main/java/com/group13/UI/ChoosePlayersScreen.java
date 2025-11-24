@@ -15,7 +15,10 @@ import javax.swing.event.ChangeListener;
 
 import java.util.ArrayList;
 import com.group13.Players.Player;
+import com.group13.Singelton.Game;
 import com.group13.Singelton.PlayerTurnManager;
+import com.group13.State.AnswerState;
+import com.group13.State.WaitingState;
 
 public class ChoosePlayersScreen extends JPanel {
     private JPanel playerFieldsPanel; // panel to hold player textfields
@@ -105,20 +108,46 @@ public class ChoosePlayersScreen extends JPanel {
         // Logic to start the game with entered player names
         int playerCount = playerFieldsPanel.getComponentCount() / 2; // each field + spacer
         ArrayList<Player> players = new ArrayList<>();
+        Game game = Game.getInstance();
         PlayerTurnManager ptm = PlayerTurnManager.getInstance();
 
+        if(fieldsAreEmpty(playerCount)) {
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Please enter names for all players.",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
         for (int i = 0; i < playerCount; i++) {
             JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
-            players.add(new Player(tf.getText().trim()));
+            Player player = new Player(tf.getText().trim());
+            players.add(player);
             if(i ==0){
                 ptm.setCurrentPlayer(players.get(0));
+                player.setState(new AnswerState());
+            }
+            else{
+                player.setState(new WaitingState());
             }
         }
         ptm.set_Players(players);
+        game.start();
 
         ptm.getPlayers().forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
         frame.showStartGameScreen();
         
+    }
+
+    private boolean fieldsAreEmpty(int playerCount) {
+        for (int i = 0; i < playerCount; i++) {
+            JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
+            if (tf.getText().trim().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

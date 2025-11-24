@@ -1,6 +1,7 @@
 package com.group13.Players;
 
 import com.group13.State.PlayerState;
+import com.group13.State.WaitingState;
 
 public class Player {
     private static int playerId = 0; // Static variable to keep track of player IDs
@@ -13,6 +14,7 @@ public class Player {
         playerId++; // Marishel : let the id increment for each new player
         this.playerName = playerName;
         this.score = 0; // Initial score 0
+        
     }
 
     //we can add points
