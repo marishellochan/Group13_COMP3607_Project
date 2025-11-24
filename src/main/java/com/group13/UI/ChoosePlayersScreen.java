@@ -137,6 +137,8 @@ public class ChoosePlayersScreen extends JPanel {
 
         ptm.getPlayers().forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
         frame.showStartGameScreen();
+
+        game.startGameSession("Game" + System.currentTimeMillis()); //unique id- start session while tracking
         
     }
 
