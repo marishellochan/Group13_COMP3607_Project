@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import com.group13.Players.Player;
 import com.group13.Singelton.PlayerTurnManager;
@@ -21,17 +20,7 @@ public class StartGameScreen extends JPanel implements Screen {
         setBackground(Color.RED);
 
         // quit button
-        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        topPanel.setBackground(Color.RED);
-        
-        JButton quitBtn = new JButton("QUIT");
-        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        quitBtn.setBackground(Color.RED);
-        quitBtn.setForeground(Color.WHITE);
-        quitBtn.setPreferredSize(new Dimension(80, 30));
-        quitBtn.addActionListener(e -> System.exit(0));
-        topPanel.add(quitBtn);
-        
+        JPanel topPanel = QuitButtonFactory.createQuitButtonPanel(Color.RED);
         add(topPanel, BorderLayout.NORTH);
 
         // player buttons

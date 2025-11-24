@@ -16,18 +16,22 @@ public class QuestionValueScreen extends JPanel implements Screen {
         setLayout(new BorderLayout());
         setBackground(Color.GREEN);
 
-        // guit button
-        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        topPanel.setBackground(Color.GREEN);
+        // // guit button
+        // JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        // topPanel.setBackground(Color.GREEN);
         
-        JButton quitBtn = new JButton("QUIT");
-        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        quitBtn.setBackground(Color.RED);
-        quitBtn.setForeground(Color.WHITE);
-        quitBtn.setPreferredSize(new Dimension(80, 30));
-        quitBtn.addActionListener(e -> System.exit(0));
-        topPanel.add(quitBtn);
+        // JButton quitBtn = new JButton("QUIT");
+        // quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        // quitBtn.setBackground(Color.RED);
+        // quitBtn.setForeground(Color.WHITE);
+        // quitBtn.setPreferredSize(new Dimension(80, 30));
+        // quitBtn.addActionListener(e -> System.exit(0));
+        // topPanel.add(quitBtn);
         
+        // add(topPanel, BorderLayout.NORTH);
+        
+        JPanel topPanel = QuitButtonFactory.createQuitButtonPanel(Color.RED);
+        topPanel.setOpaque(false);
         add(topPanel, BorderLayout.NORTH);
 
         // value buttons

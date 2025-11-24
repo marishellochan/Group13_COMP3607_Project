@@ -37,13 +37,17 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         add(lblPlayerName);
 
 
-        // Quit Button
-        JButton quitBtn = new JButton("QUIT");
-        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        quitBtn.setBackground(Color.WHITE);
-        quitBtn.setForeground(Color.RED);
+        // // Quit Button
+        // JButton quitBtn = new JButton("QUIT");
+        // quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        // quitBtn.setBackground(Color.WHITE);
+        // quitBtn.setForeground(Color.RED);
+        // quitBtn.setBounds(390, 20, 80, 25);
+        // quitBtn.addActionListener(e -> System.exit(0));
+        // add(quitBtn);
+
+        JButton quitBtn = QuitButtonFactory.createQuitButton(Color.RED); // Default white bg, red text
         quitBtn.setBounds(390, 20, 80, 25);
-        quitBtn.addActionListener(e -> System.exit(0));
         add(quitBtn);
 
         // displays the question
