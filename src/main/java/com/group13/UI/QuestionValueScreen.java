@@ -13,10 +13,27 @@ public class QuestionValueScreen extends JPanel implements Screen {
     private JButton[] valueButtons;
 
     public QuestionValueScreen(MainFrame frame, String category) {
-    
-        setLayout(new GridLayout(0, 2, 10, 10)); // dynamic rows, 2 columns
+        setLayout(new BorderLayout());
         setBackground(Color.GREEN);
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // guit button
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanel.setBackground(Color.GREEN);
+        
+        JButton quitBtn = new JButton("QUIT");
+        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        quitBtn.setBackground(Color.RED);
+        quitBtn.setForeground(Color.WHITE);
+        quitBtn.setPreferredSize(new Dimension(80, 30));
+        quitBtn.addActionListener(e -> System.exit(0));
+        topPanel.add(quitBtn);
+        
+        add(topPanel, BorderLayout.NORTH);
+
+        // value buttons
+        JPanel centerPanel = new JPanel(new GridLayout(0, 2, 10, 10));
+        centerPanel.setBackground(Color.GREEN);
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         GameData data = GameData.getInstance();
         List<Integer> values = data.getValues();
@@ -37,8 +54,10 @@ public class QuestionValueScreen extends JPanel implements Screen {
             });
 
             valueButtons[i] = btn;
-            add(btn);
+            centerPanel.add(btn);
         }
+
+        add(centerPanel, BorderLayout.CENTER);
 
         updateValueButtons(category);
     }

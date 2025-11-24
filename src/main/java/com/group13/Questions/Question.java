@@ -59,7 +59,7 @@ public class Question {
     }
 
     public boolean checkAnswer(String answer) {
-        return this.answer.equals(answer);
+        return this.answer.trim().equals(answer.trim());
     }
     
     public boolean isAnswered() {
@@ -70,6 +70,7 @@ public class Question {
         return "Category: " + category + "\n" +
                "Value: " + value + "\n" +
                "Question: " + questionText + "\n" +
+               "answer: " + answer + "\n" +
                "A: " + optionA + "\n" +
                "B: " + optionB + "\n" +
                "C: " + optionC + "\n" +

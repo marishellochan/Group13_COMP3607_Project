@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,11 +28,29 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         setLayout(new BorderLayout());
         setBackground(Color.RED);
 
-        // this part shows the title and spinner to choose number of players
-        JPanel topPanel = new JPanel();
-        topPanel.setOpaque(false);
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
-        topPanel.setBorder(new EmptyBorder(15, 10, 10, 10));
+        // Top section with quit button and title/spinner
+        JPanel topSection = new JPanel(new BorderLayout());
+        topSection.setOpaque(false);
+
+        // Quit button panel (top-right)
+        JPanel quitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        quitPanel.setOpaque(false);
+        
+        JButton quitBtn = new JButton("QUIT");
+        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        quitBtn.setBackground(Color.WHITE);
+        quitBtn.setForeground(Color.RED);
+        quitBtn.setPreferredSize(new Dimension(80, 30));
+        quitBtn.addActionListener(e -> System.exit(0));
+        quitPanel.add(quitBtn);
+        
+        topSection.add(quitPanel, BorderLayout.NORTH);
+
+        // Title and spinner panel
+        JPanel titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
+        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
+        titlePanel.setBorder(new EmptyBorder(15, 10, 10, 10));
 
         JLabel lblNewLabel = new JLabel("CHOOSE PLAYER COUNT");
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -43,11 +62,12 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         spinner.setMaximumSize(new Dimension(80, 40));
         spinner.setAlignmentX(CENTER_ALIGNMENT);
 
-        topPanel.add(lblNewLabel);
-        topPanel.add(Box.createVerticalStrut(15));
-        topPanel.add(spinner);
+        titlePanel.add(lblNewLabel);
+        titlePanel.add(Box.createVerticalStrut(15));
+        titlePanel.add(spinner);
 
-        add(topPanel, BorderLayout.NORTH);
+        topSection.add(titlePanel, BorderLayout.CENTER);
+        add(topSection, BorderLayout.NORTH);
 
         // this is where the text fields will go 
         playerFieldsPanel = new JPanel();
@@ -155,4 +175,3 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         return this;
     }
 }
-

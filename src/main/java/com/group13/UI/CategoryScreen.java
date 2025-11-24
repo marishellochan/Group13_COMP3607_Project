@@ -14,11 +14,28 @@ public class CategoryScreen extends JPanel implements Screen {
     private JButton[] categoryButtons;
 
     public CategoryScreen(MainFrame frame) {
-    
-        setLayout(new GridLayout(0, 2, 10, 10)); // dynamic rows, 2 columns
+        setLayout(new BorderLayout());
         setBackground(Color.BLUE);
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+        // Top panel for quit button
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanel.setBackground(Color.BLUE);
+        
+        JButton quitBtn = new JButton("QUIT");
+        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        quitBtn.setBackground(Color.RED);
+        quitBtn.setForeground(Color.WHITE);
+        quitBtn.setPreferredSize(new Dimension(80, 30));
+        quitBtn.addActionListener(e -> System.exit(0));
+        topPanel.add(quitBtn);
+        
+        add(topPanel, BorderLayout.NORTH);
+
+        // Center panel for category buttons
+        JPanel centerPanel = new JPanel(new GridLayout(0, 2, 10, 10));
+        centerPanel.setBackground(Color.BLUE);
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
         GameData data = GameData.getInstance();
         List<String> categories = data.getCategories();
 
@@ -46,9 +63,11 @@ public class CategoryScreen extends JPanel implements Screen {
             });
 
             categoryButtons[i] = btn;
-            add(btn);
+            centerPanel.add(btn);
         }
 
+        add(centerPanel, BorderLayout.CENTER);
+        
         updateCategoryButtons();
     }
 
@@ -75,5 +94,4 @@ public class CategoryScreen extends JPanel implements Screen {
     public JPanel getPanel() {
         return this;
     }
-    
 }

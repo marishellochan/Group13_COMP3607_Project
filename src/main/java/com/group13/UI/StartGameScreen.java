@@ -17,13 +17,31 @@ public class StartGameScreen extends JPanel implements Screen {
     private int playerButtonCount = 0;
 
     public StartGameScreen(MainFrame frame) {
-
-        setLayout(new GridLayout(2, 2, 10, 10));
+        setLayout(new BorderLayout());
         setBackground(Color.RED);
+
+        // quit button
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanel.setBackground(Color.RED);
+        
+        JButton quitBtn = new JButton("QUIT");
+        quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        quitBtn.setBackground(Color.RED);
+        quitBtn.setForeground(Color.WHITE);
+        quitBtn.setPreferredSize(new Dimension(80, 30));
+        quitBtn.addActionListener(e -> System.exit(0));
+        topPanel.add(quitBtn);
+        
+        add(topPanel, BorderLayout.NORTH);
+
+        // player buttons
+        JPanel centerPanel = new JPanel(new GridLayout(2, 2, 10, 10));
+        centerPanel.setBackground(Color.RED);
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         PlayerTurnManager ptm = PlayerTurnManager.getInstance();
 
-        // Create the buttons
+        // creating the player buttons
         for (Player player : ptm.getPlayers()) {
 
             JButton btn = new JButton(player.getPlayerName());
@@ -50,8 +68,10 @@ public class StartGameScreen extends JPanel implements Screen {
             playerButtons[playerButtonCount] = btn;
             playerButtonCount++;
 
-            add(btn);
+            centerPanel.add(btn);
         }
+
+        add(centerPanel, BorderLayout.CENTER);
 
         updateVisiblePlayers(ptm.getPlayers().size(), ptm.getPlayers());
         updateTurnUI(ptm.getPlayers().size());

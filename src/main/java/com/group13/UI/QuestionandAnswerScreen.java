@@ -25,9 +25,7 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         setLayout(null);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // =====================
-        // Current Player
-        // =====================
+        //this shows the current player on top of the screen
         JLabel lblPlayerTxt = new JLabel("Currently Player: ");
         lblPlayerTxt.setFont(new Font("Tahoma", Font.PLAIN, 13));
         lblPlayerTxt.setBounds(20, 20, 130, 20);
@@ -38,17 +36,17 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         lblPlayerName.setBounds(150, 20, 150, 20);
         add(lblPlayerName);
 
+
         // Quit Button
         JButton quitBtn = new JButton("QUIT");
         quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        quitBtn.setBackground(Color.RED);
+        quitBtn.setBackground(Color.WHITE);
+        quitBtn.setForeground(Color.RED);
         quitBtn.setBounds(390, 20, 80, 25);
         quitBtn.addActionListener(e -> System.exit(0));
         add(quitBtn);
 
-        // =====================
-        // Question Label
-        // =====================
+        // displays the question
         JLabel lblQuestionTitle = new JLabel("QUESTION");
         lblQuestionTitle.setFont(new Font("Tahoma", Font.BOLD, 16));
         lblQuestionTitle.setBounds(200, 60, 150, 25);
@@ -59,9 +57,8 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         lblQuestion.setFont(new Font("Tahoma", Font.PLAIN, 14));
         add(lblQuestion);
 
-        // =====================
-        // Answer Options
-        // =====================
+        
+        //answer options
         optionGroup = new ButtonGroup();
 
         JLabel lblA = new JLabel("A");
@@ -100,9 +97,7 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         add(optD);
         optionGroup.add(optD);
 
-        // =====================
-        // SUBMIT Button
-        // =====================
+        //submit button 
         JButton submitBtn = new JButton("SUBMIT");
         submitBtn.setBounds(200, 320, 100, 30);
         submitBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -112,9 +107,7 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         add(submitBtn);
     }
 
-    // =====================================================
-    // Handle Submit Logic
-    // =====================================================
+    
     private void handleSubmit() {
 
         String chosen = null;
@@ -154,7 +147,7 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         // Move to next player
         ptm.nextTurn();
 
-        // Go back to category screen
+        // Go back to start game screen and shows next players turn
         mainFrame.showScreen(new StartGameScreen(mainFrame));
     }
 
