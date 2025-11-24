@@ -2,14 +2,14 @@ package com.group13.UI;
 
 import java.util.List;
 import com.group13.Singelton.GameData;
+import com.group13.Questions.Question;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class QuestionValueScreen extends JPanel{
-    private MainFrame mainFrame;
+public class QuestionValueScreen extends JPanel implements Screen {
     private JButton[] valueButtons;
 
     public QuestionValueScreen(MainFrame frame, String category) {
@@ -31,12 +31,31 @@ public class QuestionValueScreen extends JPanel{
 
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // add functionality to handle category selection and show question value and then show question 
+                    Question question = data.getQuestionByCategoryAndValue(category, value);
+                    frame.showScreen(new QuestionandAnswerScreen(frame, question));
                 }
             });
 
             valueButtons[i] = btn;
             add(btn);
         }
+
+        updateValueButtons(category);
+    }
+
+    public void updateValueButtons(String category) {
+        GameData data = GameData.getInstance();
+
+        for (int i = 0; i < valueButtons.length; i++) {
+            Integer value = data.getValues().get(i);
+            Question question = data.getQuestionByCategoryAndValue(category, value);
+            boolean isAnswered = question.isAnswered();
+            valueButtons[i].setEnabled(!isAnswered);
+        }
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this;
     }
 }

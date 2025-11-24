@@ -60,12 +60,14 @@ public class GameData {
         return filteredQuestions;
     }
 
-    public Question getQuestionByValue_FilteredQuestions(int value, List<Question> filteredQuestions) {
-        for (Question q : filteredQuestions) {
-            if (q.getValue() == value && !q.isAnswered()) {
+    public Question getQuestionByCategoryAndValue(String category, int value) {
+        for (Question q : questions) {
+            if (q.getCategory().equals(category) && q.getValue() == value) {
                 return q;
             }
         }
-        return null; // No matching question found
+        return null; // not found
     }
+
+
 }

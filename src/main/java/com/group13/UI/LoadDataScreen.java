@@ -20,7 +20,7 @@ import com.group13.State.*;
 import com.group13.Singelton.*;
 import com.group13.TemplatePattern_LoadData.*;
 
-public class LoadDataScreen extends JPanel {
+public class LoadDataScreen extends JPanel implements Screen {
 
 	private JComboBox<String> dataTypeCombo;
 	
@@ -65,7 +65,12 @@ public class LoadDataScreen extends JPanel {
         gameData.printQuestions();
 
         // Switch to ChoosePlayersScreen inside the same MainFrame
-        frame.showChoosePlayersScreen();
+        frame.showScreen(new ChoosePlayersScreen(frame));
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this;
     }
 
 	
