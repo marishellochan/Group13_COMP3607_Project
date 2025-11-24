@@ -139,7 +139,6 @@ public class ChoosePlayersScreen extends JPanel {
         frame.showStartGameScreen();
 
         game.startGameSession("Game" + System.currentTimeMillis()); //unique id- start session while tracking
-        
     }
 
     private boolean fieldsAreEmpty(int playerCount) {
