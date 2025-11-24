@@ -147,8 +147,6 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
             }
         }
         ptm.set_Players(players);
-        game.start();
-
         ptm.getPlayers().forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
         frame.showScreen(new StartGameScreen(frame));
         

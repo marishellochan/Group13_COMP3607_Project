@@ -1,24 +1,23 @@
 package com.group13.Singelton;
 
-import com.group13.State.*;
+import java.awt.EventQueue;
 import com.group13.TemplatePattern_LoadData.TemplateLoadData;
-
+import com.group13.UI.MainFrame;
 import  com.group13.Logging.*;
 import com.group13.Observer.*;
+import com.group13.UI.MainFrame;
 
 public class Game implements Subject { // Marishel : the game is the subject so whenever an action is done, it will notify its EventLogger
 
     private static Game instance;
     private PlayerTurnManager playerTurnManager;
     private Observer eventLogger; // Marishel : the observer to log events
-    private GameState state;
     private GameData gameData;
 
     // private GameHistory gameHistory; //Aaron: track turns for reporting
 
     private Game() {
         // Private constructor to prevent instantiation
-        this.state = new BeginningState(); // Initial state
     }
 
     public static Game getInstance() {
@@ -41,37 +40,25 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     }
 
 
-    public void setState(GameState state) {
-        this.state = state;
-    }
-
-    public GameState getState() {
-        return state;
+    public void startUp(){
+         EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainFrame frame = new MainFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
     }
 
     public void load(TemplateLoadData template){
-        try{
-            state.loadgame(this, template);
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-    }
-
-    public void start(){
-        try{
-            state.startgame(this);
-        } catch (Exception e){  
-            System.out.println(e.getMessage());
-        }
+        template.loadData(); 
     }
 
     public void end(){
-        try{
-            state.endgame(this);
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        //end game 
     }
 
     public void registerEventLogger(Observer o) {

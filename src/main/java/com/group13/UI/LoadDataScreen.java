@@ -15,8 +15,6 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 
 import java.awt.Font;
-
-import com.group13.State.*;
 import com.group13.Singelton.*;
 import com.group13.TemplatePattern_LoadData.*;
 
