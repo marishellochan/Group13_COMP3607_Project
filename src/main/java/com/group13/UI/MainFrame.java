@@ -51,6 +51,13 @@ public class MainFrame extends JFrame {
         contentPane.repaint();
     }
 
+    public void showQuestionValueScreen(String category) {
+        contentPane.removeAll();
+        contentPane.add(new QuestionValueScreen(this, category), BorderLayout.CENTER);
+        contentPane.revalidate();
+        contentPane.repaint();
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainFrame::new);
     }

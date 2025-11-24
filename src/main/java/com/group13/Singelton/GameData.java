@@ -38,4 +38,34 @@ public class GameData {
         }
         return categories;
     }
+
+    public List<Integer> getValues(){
+        List<Integer> values = new ArrayList<>();
+        for (Question q : questions) {
+            int value = q.getValue();
+            if (!values.contains(value)) {
+                values.add(value);
+            }
+        }
+        return values;
+    }
+
+    public List<Question> getQuestionsByCategory(String category) {
+        List<Question> filteredQuestions = new ArrayList<>();
+        for (Question q : questions) {
+            if (q.getCategory().equals(category)) {
+                filteredQuestions.add(q);
+            }
+        }
+        return filteredQuestions;
+    }
+
+    public Question getQuestionByValue_FilteredQuestions(int value, List<Question> filteredQuestions) {
+        for (Question q : filteredQuestions) {
+            if (q.getValue() == value && !q.isAnswered()) {
+                return q;
+            }
+        }
+        return null; // No matching question found
+    }
 }

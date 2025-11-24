@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
+import com.group13.Questions.Question;
 
 public class CategoryScreen extends JPanel {
     private MainFrame mainFrame;
@@ -31,7 +32,16 @@ public class CategoryScreen extends JPanel {
 
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // add functionality to handle category selection and show question value and then show question 
+                    if (isCategoryEmpty(category)) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "All questions in this category have been answered. Please choose another category.",
+                                "Category Empty",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } else {
+                        frame.showQuestionValueScreen(category);
+                    }
                 }
             });
 
@@ -39,5 +49,20 @@ public class CategoryScreen extends JPanel {
             add(btn);
         }
     }
+
+    public boolean isCategoryEmpty(String category) {
+        GameData data = GameData.getInstance();
+        List<Question> qs = data.getQuestionsByCategory(category);
+
+        for (Question q : qs) {
+            if (!q.isAnswered()) {
+                return false;  // still some remaining
+            }
+        }
+        return true; // ALL answered
+    }
+    
+
+
     
 }
