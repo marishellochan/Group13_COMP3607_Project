@@ -75,4 +75,17 @@ public class Question {
                "C: " + optionC + "\n" +
                "D: " + optionD + "\n";
     }
+
+    public String getOptionA() {
+        return optionA;
+    }
+    public String getOptionB() {
+        return optionB;
+    }
+    public String getOptionC() {
+        return optionC;
+    }
+    public String getOptionD() {
+        return optionD;
+    }
 }

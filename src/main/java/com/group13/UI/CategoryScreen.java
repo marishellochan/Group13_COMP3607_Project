@@ -9,7 +9,7 @@ import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
 import com.group13.Questions.Question;
 
-public class CategoryScreen extends JPanel {
+public class CategoryScreen extends JPanel implements Screen {
     private MainFrame mainFrame;
     private JButton[] categoryButtons;
 
@@ -40,7 +40,7 @@ public class CategoryScreen extends JPanel {
                                 JOptionPane.INFORMATION_MESSAGE
                         );
                     } else {
-                        frame.showQuestionValueScreen(category);
+                        frame.showScreen(new QuestionValueScreen(frame, category));
                     }
                 }
             });
@@ -48,6 +48,8 @@ public class CategoryScreen extends JPanel {
             categoryButtons[i] = btn;
             add(btn);
         }
+
+        updateCategoryButtons();
     }
 
     public boolean isCategoryEmpty(String category) {
@@ -61,8 +63,17 @@ public class CategoryScreen extends JPanel {
         }
         return true; // ALL answered
     }
-    
 
+    public void updateCategoryButtons() {
+        for (JButton btn : categoryButtons) {
+            String category = btn.getText();
+            btn.setEnabled(!isCategoryEmpty(category));
+        }
+    }
 
+    @Override
+    public JPanel getPanel() {
+        return this;
+    }
     
 }

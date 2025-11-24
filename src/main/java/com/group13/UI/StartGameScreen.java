@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import com.group13.Players.Player;
 import com.group13.Singelton.PlayerTurnManager;
 
-public class StartGameScreen extends JPanel {
+public class StartGameScreen extends JPanel implements Screen {
 
     private JButton[] playerButtons = new JButton[4];
     private int playerButtonCount = 0;
@@ -42,7 +42,7 @@ public class StartGameScreen extends JPanel {
                             JOptionPane.WARNING_MESSAGE
                     );
                 } else {
-                    frame.showCategoryScreen();
+                    frame.showScreen(new CategoryScreen(frame));
                 }
              }
             });
@@ -74,5 +74,10 @@ public class StartGameScreen extends JPanel {
         for (int i = 0; i < playerCount; i++) {
             playerButtons[i].setEnabled(i + 1 == ptm.getCurrentTurn());
         }
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this;
     }
 }

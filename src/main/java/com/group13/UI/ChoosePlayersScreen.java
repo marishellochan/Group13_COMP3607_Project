@@ -20,7 +20,7 @@ import com.group13.Singelton.PlayerTurnManager;
 import com.group13.State.AnswerState;
 import com.group13.State.WaitingState;
 
-public class ChoosePlayersScreen extends JPanel {
+public class ChoosePlayersScreen extends JPanel implements Screen {
     private JPanel playerFieldsPanel; // panel to hold player textfields
 
     public ChoosePlayersScreen(MainFrame frame) {
@@ -136,7 +136,7 @@ public class ChoosePlayersScreen extends JPanel {
         game.start();
 
         ptm.getPlayers().forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
-        frame.showStartGameScreen();
+        frame.showScreen(new StartGameScreen(frame));
         
     }
 
@@ -148,6 +148,11 @@ public class ChoosePlayersScreen extends JPanel {
             }
         }
         return false;
+    }
+
+    @Override
+    public JPanel getPanel() {
+        return this;
     }
 }
 

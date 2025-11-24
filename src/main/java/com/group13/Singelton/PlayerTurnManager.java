@@ -49,6 +49,11 @@ public class PlayerTurnManager {
         this.currentPlayer = player;
     }
 
+    public void nextTurn() {
+        currentTurn = (currentTurn % currentNumberOfPlayers) + 1;
+        currentPlayer = players.get(currentTurn - 1);
+    }
+
 
 
     
