@@ -14,7 +14,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private GameState state;
     private GameData gameData;
 
-    private GameHistory gameHistory; //Aaron: track turns for reporting
+    // private GameHistory gameHistory; //Aaron: track turns for reporting
 
     private Game() {
         // Private constructor to prevent instantiation
@@ -28,9 +28,9 @@ public class Game implements Subject { // Marishel : the game is the subject so 
         return instance;
     }
 
-    public GameHistory getGameHistory() {
-        return this.gameHistory;
-    }
+    // public GameHistory getGameHistory() {
+    //     return this.gameHistory;
+    // }
 
     public void setTurnManager(PlayerTurnManager ptm) {
         this.playerTurnManager = ptm;
@@ -92,8 +92,8 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     public void startGameSession(String gameId){
         //start history when game begins
-        this.gameHistory = new GameHistory(gameId);
-        System.out.println("GameHistory started: "+gameId);
+        // this.gameHistory = new GameHistory(gameId);
+        // System.out.println("GameHistory started: "+gameId);
 
         //connect EventLogger with same gameId
         EventLogger logger = EventLogger.getInstance();
