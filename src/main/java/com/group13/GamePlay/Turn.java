@@ -1,6 +1,7 @@
 package com.group13.GamePlay;
 
-//collect the info of each turn
+//This is for the game report
+//collect the info for each player's turn
 public class Turn {
     private String playerName;
     private String category;
@@ -30,9 +31,11 @@ public class Turn {
     public String getCategory(){return category;
     }
 
+    //point value
     public int getQuestionValue(){return questionValue;
     }
 
+    //full question
     public String getQuestionText(){return questionText;
     }
 
@@ -43,9 +46,12 @@ public class Turn {
     public boolean isCorrect(){ return isCorrect;
     }
 
+
+    //points eanred or lost 
     public int getPointsEarned(){ return pointsEarned;
     }
 
+    //total
     public int getScoreAfterTurn(){ return scoreAfterTurn;
     }
 
