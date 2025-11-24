@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import com.group13.Players.Player;
 import com.group13.Singelton.Game;
 import com.group13.Singelton.PlayerTurnManager;
-import com.group13.State.AnswerState;
-import com.group13.State.WaitingState;
 
 public class ChoosePlayersScreen extends JPanel implements Screen {
     private JPanel playerFieldsPanel; // panel to hold player textfields
@@ -32,7 +30,7 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         JPanel topSection = new JPanel(new BorderLayout());
         topSection.setOpaque(false);
 
-        // Quit button panel (top-right)
+        // Quit button 
         JPanel quitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         quitPanel.setOpaque(false);
         
@@ -146,10 +144,6 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
             players.add(player);
             if(i ==0){
                 ptm.setCurrentPlayer(players.get(0));
-                player.setState(new AnswerState());
-            }
-            else{
-                player.setState(new WaitingState());
             }
         }
         ptm.set_Players(players);

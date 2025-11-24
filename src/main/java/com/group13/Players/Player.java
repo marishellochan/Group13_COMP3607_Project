@@ -1,13 +1,9 @@
 package com.group13.Players;
 
-import com.group13.State.PlayerState;
-import com.group13.State.WaitingState;
-
 public class Player {
     private static int playerId = 0; // Static variable to keep track of player IDs
     private String playerName;
     private int score;
-    private PlayerState state;
 
     //this is the constrcutor
     public Player(String playerName) {
@@ -43,12 +39,5 @@ public class Player {
         return "Player ID: "+playerId+", Player Name: "+playerName+", Score: "+score;
     }
 
-    public void setState(PlayerState state) {
-        this.state = state;
-    }
-
-    public PlayerState getState() {
-        return state;
-    }
 }
 
