@@ -43,8 +43,12 @@ public class GameController  { // this is what the UI screens will communicate w
             players.add(player);
             
             // Create log entry
+<<<<<<< HEAD
             LogEntry entry = LogEntry.createPlayerJoinedEvent(
                 String.valueOf(player.getPlayerId()), 
+=======
+            LogEntry entry = LogEntry.createPlayerJoinedEvent(String.valueOf(player.getPlayerId()), 
+>>>>>>> 7c9f19ba0e3b37c5cf7aa7892fd8bd6ae4e685c1
                 player.getPlayerName());
             game.notifyEventLogger(entry);
         }
@@ -86,8 +90,12 @@ public class GameController  { // this is what the UI screens will communicate w
 
     public void selectCategory(String category) {
         Player currentPlayer = game.getTurnManager().getCurrentPlayer();
+<<<<<<< HEAD
         LogEntry entry = LogEntry.createSelectCategoryEvent(
             String.valueOf(currentPlayer.getPlayerId()), 
+=======
+        LogEntry entry = LogEntry.createSelectCategoryEvent(String.valueOf(currentPlayer.getPlayerId()), 
+>>>>>>> 7c9f19ba0e3b37c5cf7aa7892fd8bd6ae4e685c1
             category
         );
         game.notifyEventLogger(entry);
@@ -109,7 +117,11 @@ public class GameController  { // this is what the UI screens will communicate w
         
         if (question != null) {
             LogEntry entry = LogEntry.createSelectQuestionEvent(
+<<<<<<< HEAD
               String.valueOf(currentPlayer.getPlayerId()),
+=======
+                String.valueOf(currentPlayer.getPlayerId()),
+>>>>>>> 7c9f19ba0e3b37c5cf7aa7892fd8bd6ae4e685c1
                 category, 
                 value
             );
@@ -147,8 +159,12 @@ public class GameController  { // this is what the UI screens will communicate w
         game.notifyEventLogger(entry);
         
         if (correct) {
+<<<<<<< HEAD
             LogEntry scoreEntry = LogEntry.scoreUpdatedEvent( 
                 String.valueOf(currentPlayer.getPlayerId()), 
+=======
+            LogEntry scoreEntry = LogEntry.scoreUpdatedEvent(String.valueOf(currentPlayer.getPlayerId()), 
+>>>>>>> 7c9f19ba0e3b37c5cf7aa7892fd8bd6ae4e685c1
                 currentPlayer.getScore()
             );
             game.notifyEventLogger(scoreEntry);

@@ -1,5 +1,7 @@
 package com.group13.GamePlay;
 
+import com.group13.Questions.Question;
+
 //This is for the game report
 //collect the info for each player's turn
 public class Turn {
@@ -13,11 +15,11 @@ public class Turn {
     private int scoreAfterTurn;
 
     //give all details for turn
-    public Turn(String playerName, String category, int value, String questionText, String answer, boolean correct, int points, int newScore){
+    public Turn(String playerName, Question question, String answer, boolean correct, int points, int newScore){
         this.playerName = playerName;
-        this.category = category;
-        this.questionValue = value;
-        this.questionText = questionText;
+        this.category = question.getCategory();
+        this.questionValue = question.getValue();
+        this.questionText = question.getQuestionText();
         this.answerGiven = answer;
         this.isCorrect = correct;
         this.pointsEarned = points;
