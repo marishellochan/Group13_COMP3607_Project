@@ -84,3 +84,29 @@ null,2,Enter Player Name,2025-11-25T18:45:07.946507300,null,0,null,null,0
 null,1,Select Category,2025-11-25T18:45:09.537007300,Variables & Data Types,0,null,null,0
 null,1,Select Question,2025-11-25T18:45:10.207321300,Variables & Data Types,100,null,null,0
 null,1,Answer Question,2025-11-25T18:45:12.231965600,Variables & Data Types,100,A,Incorrect,0
+null,System,Game Start up..,2025-11-25T18:51:40.285413900,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:51:43.161703300,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:51:58.387198300,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:51:58.388197900,null,0,null,null,0
+null,3,Enter Player Name,2025-11-25T18:51:58.388197900,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:52:00.053478,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T18:52:00.759093500,Variables & Data Types,100,null,null,0
+null,1,Answer Question,2025-11-25T18:52:03.083489400,Variables & Data Types,100,A,Incorrect,0
+null,2,Select Category,2025-11-25T18:52:18.018983800,Variables & Data Types,0,null,null,0
+null,2,Select Question,2025-11-25T18:52:19.144789500,Variables & Data Types,200,null,null,0
+null,2,Answer Question,2025-11-25T18:52:21.929259800,Variables & Data Types,200,B,Incorrect,0
+null,System,Game Start up..,2025-11-25T18:53:20.810122100,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:53:22.749039900,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:53:29.663334700,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:53:29.665334300,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:53:30.916123200,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T18:53:31.580148400,Variables & Data Types,100,null,null,0
+null,1,Answer Question,2025-11-25T18:53:33.740109600,Variables & Data Types,100,D,Correct,100
+null,1,Score Updated,2025-11-25T18:53:33.741110400,null,0,null,null,100
+null,2,Select Category,2025-11-25T18:53:39.720757600,Variables & Data Types,0,null,null,0
+null,2,Select Question,2025-11-25T18:53:40.323484300,Variables & Data Types,200,null,null,0
+null,2,Answer Question,2025-11-25T18:53:44.068045,Variables & Data Types,200,D,Correct,200
+null,2,Score Updated,2025-11-25T18:53:44.069041100,null,0,null,null,200
+null,System,Game Start up..,2025-11-25T18:55:04.057358100,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T18:55:22.493650200,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:55:26.000073500,null,0,null,null,0

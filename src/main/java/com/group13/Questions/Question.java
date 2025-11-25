@@ -61,16 +61,21 @@ public class Question {
     public boolean checkAnswer(String answer) {
         switch(answer.trim().toUpperCase()) {
             case "A":
+                System.out.println("Comparing" + getOptionA() + " to " + this.answer);
                 return getOptionA().equalsIgnoreCase(this.answer);
             case "B":
+                System.out.println("Comparing" + getOptionB() + " to " + this.answer);
                 return getOptionB().equalsIgnoreCase(this.answer);
             case "C":
+                System.out.println("Comparing" + getOptionC() + " to " + this.answer);
                 return getOptionC().equalsIgnoreCase(this.answer);
             case "D":
+                System.out.println("Comparing" + getOptionD() + " to " + this.answer);
                 return getOptionD().equalsIgnoreCase(this.answer);
             default:
                 return false;
         }
+
     }
     
     public boolean isAnswered() {

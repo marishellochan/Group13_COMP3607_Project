@@ -31,6 +31,12 @@ public class LoadDataScreen extends JPanel implements Screen {
     }
 
     private void addComponents() {
+        JLabel titleLabel = new JLabel("MULTIPLAYER JEOPARDY GAME!");
+        titleLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setBounds(60, 50, 400, 40);
+        add(titleLabel);
+
         JButton btnLoad = new JButton("Load Game Data");
         btnLoad.setFont(new Font("Tahoma", Font.BOLD, 16));
         btnLoad.setBounds(172, 180, 150, 50);

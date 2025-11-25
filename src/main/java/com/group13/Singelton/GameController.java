@@ -131,10 +131,12 @@ public class GameController  { // this is what the UI screens will communicate w
         Player currentPlayer = getCurrentPlayer();
         boolean correct = question.checkAnswer(answer);
         String result = "Incorrect";
+        int pointsEarned =0;
         
         if (correct) {
             result = "Correct";
-            currentPlayer.addPoints(question.getValue());
+            pointsEarned = question.getValue();
+            currentPlayer.addPoints(pointsEarned);
         }
         
         question.setAnswered();
@@ -144,7 +146,7 @@ public class GameController  { // this is what the UI screens will communicate w
         question,
         answer,
         correct,
-        question.getValue(),
+        pointsEarned,
         currentPlayer.getScore()
         );
     
