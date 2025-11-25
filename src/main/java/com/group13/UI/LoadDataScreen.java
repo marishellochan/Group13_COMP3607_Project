@@ -1,15 +1,8 @@
 package com.group13.UI;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -19,22 +12,24 @@ import com.group13.Singelton.*;
 import com.group13.TemplatePattern_LoadData.*;
 
 public class LoadDataScreen extends JPanel implements Screen {
+    private JComboBox<String> dataTypeCombo;
+    private MainFrame mainFrame;
 
-	private JComboBox<String> dataTypeCombo;
-	
-	public LoadDataScreen(MainFrame frame) {
+    public LoadDataScreen(MainFrame frame) {
+        this.mainFrame = frame;
+        
         setBackground(new Color(0, 128, 255));
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
+        addComponents();
+    }
+
+    private void addComponents() {
         JButton btnLoad = new JButton("Load Game Data");
         btnLoad.setFont(new Font("Tahoma", Font.BOLD, 16));
         btnLoad.setBounds(172, 180, 150, 50);
-        btnLoad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                handleLoadButtonClick(frame);
-            }
-        });
+        btnLoad.addActionListener(e -> handleLoadData());
         add(btnLoad);
 
         JLabel label = new JLabel("Select File to Load Game Data from:");
@@ -46,34 +41,38 @@ public class LoadDataScreen extends JPanel implements Screen {
         add(dataTypeCombo);
     }
 
-    private void handleLoadButtonClick(MainFrame frame) {
+    private void handleLoadData() {
         String selectedType = (String) dataTypeCombo.getSelectedItem();
-        TemplateLoadData template = null;
+        TemplateLoadData template = createLoader(selectedType);
 
-        switch (selectedType) {
-            case "XML": template = new LoadDataXML(); break;
-            case "CSV": template = new LoadDataCSV(); break;
-            case "JSON": template = new LoadDataJSON(); break;
-            default: System.out.println("Invalid selection"); return;
+        if (template == null) {
+            System.out.println("Invalid selection");
+            return;
         }
 
+        loadAndDisplayData(template);
+        mainFrame.showScreen(new ChoosePlayersScreen(mainFrame));
+    }
+
+    private TemplateLoadData createLoader(String type) {
+        switch (type) {
+            case "XML":  return new LoadDataXML();
+            case "CSV":  return new LoadDataCSV();
+            case "JSON": return new LoadDataJSON();
+            default:     return null;
+        }
+    }
+
+    private void loadAndDisplayData(TemplateLoadData template) {
         Game game = Game.getInstance();
         GameData gameData = GameData.getInstance();
+        
         game.load(template);
         gameData.printQuestions();
-
-        // Switch to ChoosePlayersScreen inside the same MainFrame
-        frame.showScreen(new ChoosePlayersScreen(frame));
     }
 
     @Override
     public JPanel getPanel() {
         return this;
     }
-
-	
-
-
-
-
 }

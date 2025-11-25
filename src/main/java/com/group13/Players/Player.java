@@ -3,13 +3,14 @@ import com.group13.Singelton.Game;
 import com.group13.Logging.LogEntry;
 
 public class Player {
-    private static int playerId = 0; // Static variable to keep track of player IDs
+    private static int playerIDcounter = 0;
+    private int playerId = 0; 
     private String playerName;
     private int score;
 
     //this is the constrcutor
     public Player(String playerName) {
-        playerId++; // Marishel : let the id increment for each new player
+        this.playerId = ++playerIDcounter; // Marishel : let the id increment for each new player
         this.playerName = playerName;
         this.score = 0; // Initial score 0
         

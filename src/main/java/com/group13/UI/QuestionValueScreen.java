@@ -14,60 +14,70 @@ import java.awt.event.ActionEvent;
 
 
 public class QuestionValueScreen extends JPanel implements Screen {
+    private MainFrame mainFrame;
     private JButton[] valueButtons;
+    private GameData gameData;
+    private String selectedCategory;
 
     public QuestionValueScreen(MainFrame frame, String category) {
+        this.mainFrame = frame;
+        this.selectedCategory = category;
+        this.gameData = GameData.getInstance();
+        
         setLayout(new BorderLayout());
         setBackground(Color.GREEN);
 
-        // // quit button
         JPanel topPanel = QuitButtonFactory.createQuitButtonPanel(Color.RED);
         topPanel.setOpaque(false);
         add(topPanel, BorderLayout.NORTH);
+        
+        add(createValuePanel(), BorderLayout.CENTER);
+        
+        updateValueButtons();
+    }
 
-        // value buttons
-        JPanel centerPanel = new JPanel(new GridLayout(0, 2, 10, 10));
-        centerPanel.setBackground(Color.GREEN);
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    private JPanel createValuePanel() {
+        JPanel panel = new JPanel(new GridLayout(0, 2, 10, 10));
+        panel.setBackground(Color.GREEN);
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        GameData data = GameData.getInstance();
-        List<Integer> values = data.getValues();
-
+        List<Integer> values = gameData.getValues();
         valueButtons = new JButton[values.size()];
 
         for (int i = 0; i < values.size(); i++) {
             Integer value = values.get(i);
-
             JButton btn = new JButton(value.toString());
             btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-
-            btn.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    Question question = data.getQuestionByCategoryAndValue(category, value);
-                    PlayerTurnManager ptm = PlayerTurnManager.getInstance();
-                    LogEntry entry = LogEntry.createSelectQuestionEvent(
-                        String.valueOf(ptm.getCurrentPlayer().getPlayerId()),category, value);
-                    Game.getInstance().notifyEventLogger(entry);
-                    frame.showScreen(new QuestionandAnswerScreen(frame, question));
-                }
-            });
-
+            btn.addActionListener(e -> handleValueSelection(value));
+            
             valueButtons[i] = btn;
-            centerPanel.add(btn);
+            panel.add(btn);
         }
-
-        add(centerPanel, BorderLayout.CENTER);
-
-        updateValueButtons(category);
+        
+        return panel;
     }
 
-    public void updateValueButtons(String category) {
-        GameData data = GameData.getInstance();
+    private void handleValueSelection(Integer value) {
+        Question question = gameData.getQuestionByCategoryAndValue(selectedCategory, value);
+        logQuestionSelection(value);
+        mainFrame.showScreen(new QuestionandAnswerScreen(mainFrame, question));
+    }
 
+    private void logQuestionSelection(Integer value) {
+        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
+        LogEntry entry = LogEntry.createSelectQuestionEvent(
+            String.valueOf(ptm.getCurrentPlayer().getPlayerId()),
+            selectedCategory, value);
+        Game.getInstance().notifyEventLogger(entry);
+    }
+
+    private void updateValueButtons() {
+        List<Integer> values = gameData.getValues();
+        
         for (int i = 0; i < valueButtons.length; i++) {
-            Integer value = data.getValues().get(i);
-            Question question = data.getQuestionByCategoryAndValue(category, value);
-            boolean isAnswered = question.isAnswered();
+            Integer value = values.get(i);
+            Question question = gameData.getQuestionByCategoryAndValue(selectedCategory, value);
+            boolean isAnswered = (question != null) && question.isAnswered();
             valueButtons[i].setEnabled(!isAnswered);
         }
     }
