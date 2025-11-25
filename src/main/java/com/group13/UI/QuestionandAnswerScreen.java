@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.group13.Singelton.Game;
+import com.group13.Singelton.GameController;
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
 import com.group13.Questions.Question;
@@ -17,10 +18,12 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
     private ButtonGroup optionGroup;
     private Question currentQuestion;
     private MainFrame mainFrame;
+    private GameController controller;
 
     public QuestionandAnswerScreen(MainFrame frame, Question question) {
         this.currentQuestion = question;
         this.mainFrame = frame;
+        this.controller = GameController.getInstance();
         
         setupPanel();
         addPlayerInfo();
@@ -47,7 +50,7 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         lblPlayerTxt.setBounds(20, 20, 130, 20);
         add(lblPlayerTxt);
 
-        String playerName = PlayerTurnManager.getInstance().getCurrentPlayer().getPlayerName();
+        String playerName = controller.getCurrentPlayer().getPlayerName();
         JLabel lblPlayerName = new JLabel(playerName);
         lblPlayerName.setFont(new Font("Tahoma", Font.BOLD, 14));
         lblPlayerName.setBounds(150, 20, 150, 20);
@@ -91,7 +94,12 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         JButton submitBtn = new JButton("SUBMIT");
         submitBtn.setBounds(200, 320, 100, 30);
         submitBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
-        submitBtn.addActionListener(e -> handleSubmit());
+        submitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleSubmit();
+            }
+        });
         add(submitBtn);
     }
 
@@ -103,11 +111,9 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
             return;
         }
 
-        boolean correct = currentQuestion.checkAnswer(answer);
-        Player player = PlayerTurnManager.getInstance().getCurrentPlayer();
+        boolean correct = controller.submitAnswer(currentQuestion, answer);
         
         if (correct) {
-            player.addPoints(currentQuestion.getValue());
             JOptionPane.showMessageDialog(this, "Correct!", "Nice!", 
                 JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -115,11 +121,13 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
                 JOptionPane.ERROR_MESSAGE);
         }
 
-        currentQuestion.setAnswered();
-        logAnswer(player, answer, correct);
-        
-        PlayerTurnManager.getInstance().nextTurn();
-        mainFrame.showScreen(new StartGameScreen(mainFrame));
+        // Check if game is over
+        if (controller.isGameOver()) {
+            mainFrame.showScreen(new GameOverScreen(mainFrame));
+        } else {
+            controller.nextTurn();
+            mainFrame.showScreen(new StartGameScreen(mainFrame));
+        }
     }
 
     private String getSelectedAnswer() {
@@ -128,26 +136,6 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         if (optC.isSelected()) return "C";
         if (optD.isSelected()) return "D";
         return null;
-    }
-
-    private void logAnswer(Player player, String answer, boolean correct) {
-        LogEntry entry = LogEntry.createAnswerQuestionEvent(
-            String.valueOf(player.getPlayerId()),
-            currentQuestion.getCategory(),
-            currentQuestion.getValue(),
-            answer,
-            correct ? "Correct" : "Incorrect",
-            player.getScore()
-        );
-        Game.getInstance().notifyEventLogger(entry);
-        
-        if (correct) {
-            LogEntry scoreEntry = LogEntry.scoreUpdatedEvent(
-                String.valueOf(player.getPlayerId()), 
-                player.getScore()
-            );
-            Game.getInstance().notifyEventLogger(scoreEntry);
-        }
     }
 
     @Override

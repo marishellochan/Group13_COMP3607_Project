@@ -28,6 +28,7 @@ public class GameController  { // this is what the UI screens will communicate w
 
     public void loadGame(TemplateLoadData template){
         game.load(template);
+        game.getGameData().printQuestions();
     }
 
     public void endGame(){
@@ -52,6 +53,9 @@ public class GameController  { // this is what the UI screens will communicate w
         game.getTurnManager().setCurrentPlayer(players.get(0));
     }
 
+    public List<Player> getAllPlayers() {
+        return game.getTurnManager().getPlayers();
+    }
 
      public Player getCurrentPlayer() {
         return game.getTurnManager().getCurrentPlayer();
@@ -61,6 +65,10 @@ public class GameController  { // this is what the UI screens will communicate w
         return game.getGameData().getCategories();
     }
     
+    public int getCurrentTurn() {
+        return game.getTurnManager().getCurrentTurn();
+    }
+
     public void nextTurn() {
         game.getTurnManager().nextTurn();
     }
