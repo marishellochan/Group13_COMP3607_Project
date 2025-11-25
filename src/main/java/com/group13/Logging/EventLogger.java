@@ -12,7 +12,7 @@ public class EventLogger implements Observer {
     private static EventLogger logger; //singletion instance
     private FileWriter writer;
     private String logFile = "game_event_log.csv";
-    private String currentGameId = "Game01"; //default
+    // private String currentGameId = "Game01"; //default
 
     private EventLogger(){
         try{
@@ -40,9 +40,9 @@ public class EventLogger implements Observer {
         return logger;
     }
 
-    public void setGameId(String gameId) {
-        this.currentGameId = gameId;
-    }
+    // public void setGameId(String gameId) {
+    //     this.currentGameId = gameId;
+    // }
 
 
     public void updateLog(LogEntry entry){
@@ -65,24 +65,6 @@ public class EventLogger implements Observer {
             System.out.println("Write error: "+e.getMessage());
         }
     }
-
-    
-
-    // public void logSystemEvent(String activity){
-    //     log(currentGameId, "System", activity, "", 0, "", "", 0);
-    // }
-
-    // public void logPlayerJoined(String playerId, String playerName){
-    //     log(currentGameId, playerId, "Enter Player Name", "", 0,"", "", 0);
-    // }
-
-    // public void logSelectCategory(String playerId, String category) {
-    //     log(currentGameId, playerId, "Select Category", category, 0, "", "", 0);
-    // }
-
-    // public void logSelectQuestion(String playerId, String category, int value) {
-    //     log(currentGameId, playerId, "Select Question", category, value, "", "", 0);
-    // }
 
     //close when game ends
     public void close(){

@@ -1,6 +1,9 @@
 package com.group13.Singelton;
 
 import java.awt.EventQueue;
+
+import org.apache.commons.logging.Log;
+
 import com.group13.TemplatePattern_LoadData.TemplateLoadData;
 import com.group13.UI.MainFrame;
 import  com.group13.Logging.*;
@@ -49,6 +52,8 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 				}
 			}
 		});
+        LogEntry entry = LogEntry.createSystemEvent("Game Start up..");
+        notifyEventLogger(entry);
     }
 
     public void load(TemplateLoadData template){

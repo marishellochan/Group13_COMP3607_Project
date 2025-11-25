@@ -1,4 +1,6 @@
 package com.group13.Players;
+import com.group13.Singelton.Game;
+import com.group13.Logging.LogEntry;
 
 public class Player {
     private static int playerId = 0; // Static variable to keep track of player IDs

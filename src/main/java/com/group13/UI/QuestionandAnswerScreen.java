@@ -158,6 +158,11 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         currentPlayer.getScore()
         );
         Game.getInstance().notifyEventLogger(entry);
+
+        if(correct){
+             LogEntry entry2 = LogEntry.scoreUpdatedEvent(String.valueOf(currentPlayer.getPlayerId()), currentPlayer.getScore());
+            Game.getInstance().notifyEventLogger(entry2);
+        }
         // Move to next player
         ptm.nextTurn();
 

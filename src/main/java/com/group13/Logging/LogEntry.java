@@ -71,6 +71,14 @@ public class LogEntry {
         return entry;
     }
 
+    public static LogEntry scoreUpdatedEvent(String playerId, int newScore) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId(playerId);
+        entry.setActivity("Score Updated");
+        entry.setScore(newScore);
+        return entry;
+    }
+
 
 
     public static int getCaseId(){ return caseId;
@@ -106,20 +114,6 @@ public class LogEntry {
     }
     public void setActivity(String activity){ this.activity=activity;
     }
-
-    // public String toString(){ // Marishel // makes the Tostring look better using a String Builder 
-    //     StringBuilder sb = new StringBuilder();
-    //     sb.append("Case ID: ").append(caseId).append(", ");
-    //     sb.append("Player ID: ").append(playerId).append(", ");
-    //     sb.append("Activity: ").append(activity).append(", ");
-    //     sb.append("Category: ").append(category).append(", ");
-    //     sb.append("Question Value: ").append(questionValue).append(", ");
-    //     sb.append("Answer: ").append(answer).append(", ");
-    //     sb.append("Result: ").append(result).append(", ");
-    //     sb.append("Score: ").append(score);
-    //     return sb.toString();
-
-    // }
 
 
 }
