@@ -1,5 +1,7 @@
 package com.group13.Observer;
 
+import com.group13.Logging.LogEntry;
+
 public interface Observer {
-    void update();
+    void updateLog(LogEntry entry);
 }

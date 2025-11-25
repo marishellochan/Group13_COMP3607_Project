@@ -1,7 +1,11 @@
 package com.group13.UI;
 
 import java.util.List;
+
+import com.group13.Singelton.Game;
 import com.group13.Singelton.GameData;
+import com.group13.Singelton.PlayerTurnManager;
+import com.group13.Logging.LogEntry;
 import com.group13.Questions.Question;
 import javax.swing.*;
 import java.awt.*;
@@ -40,6 +44,10 @@ public class QuestionValueScreen extends JPanel implements Screen {
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Question question = data.getQuestionByCategoryAndValue(category, value);
+                    PlayerTurnManager ptm = PlayerTurnManager.getInstance();
+                    LogEntry entry = LogEntry.createSelectQuestionEvent(
+                        String.valueOf(ptm.getCurrentPlayer().getPlayerId()),category, value);
+                    Game.getInstance().notifyEventLogger(entry);
                     frame.showScreen(new QuestionandAnswerScreen(frame, question));
                 }
             });

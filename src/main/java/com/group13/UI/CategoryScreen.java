@@ -5,8 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
+
+import com.group13.Singelton.Game;
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
+import com.group13.Logging.LogEntry;
 import com.group13.Questions.Question;
 
 public class CategoryScreen extends JPanel implements Screen {
@@ -47,6 +50,10 @@ public class CategoryScreen extends JPanel implements Screen {
                                 JOptionPane.INFORMATION_MESSAGE
                         );
                     } else {
+                        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
+                        LogEntry entry = LogEntry.createSelectCategoryEvent(
+                            String.valueOf(ptm.getCurrentPlayer().getPlayerId()),category);
+                        Game.getInstance().notifyEventLogger(entry);
                         frame.showScreen(new QuestionValueScreen(frame, category));
                     }
                 }

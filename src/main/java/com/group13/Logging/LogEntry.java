@@ -1,10 +1,12 @@
 package com.group13.Logging;
 
+import java.time.LocalDate;
 
 public class LogEntry {
     private static int caseCounter = 0; // Static counter for unique case IDs
     private static int caseId; // Unique case ID for each log entry
     private String playerId;
+    private String time;
     private String activity;
     private String category;
     private int questionValue;
@@ -12,50 +14,72 @@ public class LogEntry {
     private String result;
     private int score;
     
-    // Marishel : removed gameId as its not needed in log entry, we need a caseID
-    // The constructor will auto increment the caseID for each new log entry created and we will set the attributes using setters
-    //default constructor with empty log entry
+  
     public LogEntry() {
         this.caseCounter++;
         this.caseId = caseCounter;;
-        // this.playerId = "";
-        // this.activity = "";
-        // this.category = "";
-        // this.questionValue = 0;
-        // this.answer = "";
-        // this.result = "";
-        // this.score = 0;
+        this.time = LocalDate.now().toString();
+       
     }
 
-    // Marishel :commented this out cause its still a long parameter list
-    //constructor instead of hardcoded details
-    // public LogEntry(String gameId, String playerId, String activity, String category, int questionValue, String answer, String result, int score){
-    //     this.gameId=gameId;
-    //     this.playerId = playerId;
-    //     this.activity = activity;
-    //     this.category = category;
-    //     this.questionValue = questionValue;
-    //     this.answer = answer;
-    //     this.result = result;
-    //     this.score = score;
-    // }
+    public static LogEntry createSystemEvent(String activity) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId("System");
+        entry.setActivity(activity);
+        return entry;
+    }
+    
+    // Player joined event
+    public static LogEntry createPlayerJoinedEvent(String playerId, String playerName) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId(playerId);
+        entry.setActivity("Enter Player Name");
+        return entry;
+    }
+    
+    // Select category event
+    public static LogEntry createSelectCategoryEvent(String playerId, String category) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId(playerId);
+        entry.setActivity("Select Category");
+        entry.setCategory(category);
+        return entry;
+    }
+    
+    // Select question event
+    public static LogEntry createSelectQuestionEvent(String playerId, String category, int questionValue) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId(playerId);
+        entry.setActivity("Select Question");
+        entry.setCategory(category);
+        entry.setQuestionValue(questionValue);
+        return entry;
+    }
+    
+    // Answer question event
+    public static LogEntry createAnswerQuestionEvent(String playerId, String category, 
+                                                      int questionValue, String answer, 
+                                                      String result, int score) {
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId(playerId);
+        entry.setActivity("Answer Question");
+        entry.setCategory(category);
+        entry.setQuestionValue(questionValue);
+        entry.setAnswer(answer);
+        entry.setResult(result);
+        entry.setScore(score);
+        return entry;
+    }
 
-    // //basic log entry
-    // public LogEntry(String gameId, String playerId, String activity){
-    //     this(gameId, playerId, activity, "", 0, "", "", 0);
-    // }
-
-//we have getters cus Marishel say to access data from here
-//to pass into log function as parameters
-    // public String getGameId(){return gameId;}
 
 
     public static int getCaseId(){ return caseId;
     }
-    
-    public String getPlayerId(){return playerId;
+    public String getTime(){ return time;
     }
-    public String getActivity(){return activity;
+    public String getActivity(){ return activity;
+    }
+    public String getPlayerId(){return playerId;
     }
     public String getCategory(){return category;
     }
@@ -67,17 +91,8 @@ public class LogEntry {
     }
     public int getScore(){ return score;
     }
-
-
-    // Marishel : The system will generate a caseid automatically for each log entry.
-    // So no setter for caseid is needed
-    //add setters for the various log entries
-    // public void setGameId(String gameId){this.gameId=gameId;
-    // }
     
     public void setPlayerId(String playerId){ this.playerId=playerId;
-    }
-    public void setActivity(String activity){this.activity=activity;
     }
     public void setCategory(String category){this.category=category;
     }
@@ -89,20 +104,22 @@ public class LogEntry {
     }
     public void setScore(int score){ this.score=score;
     }
-
-    public String toString(){ // Marishel // makes the Tostring look better using a String Builder 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Case ID: ").append(caseId).append(", ");
-        sb.append("Player ID: ").append(playerId).append(", ");
-        sb.append("Activity: ").append(activity).append(", ");
-        sb.append("Category: ").append(category).append(", ");
-        sb.append("Question Value: ").append(questionValue).append(", ");
-        sb.append("Answer: ").append(answer).append(", ");
-        sb.append("Result: ").append(result).append(", ");
-        sb.append("Score: ").append(score);
-        return sb.toString();
-
+    public void setActivity(String activity){ this.activity=activity;
     }
+
+    // public String toString(){ // Marishel // makes the Tostring look better using a String Builder 
+    //     StringBuilder sb = new StringBuilder();
+    //     sb.append("Case ID: ").append(caseId).append(", ");
+    //     sb.append("Player ID: ").append(playerId).append(", ");
+    //     sb.append("Activity: ").append(activity).append(", ");
+    //     sb.append("Category: ").append(category).append(", ");
+    //     sb.append("Question Value: ").append(questionValue).append(", ");
+    //     sb.append("Answer: ").append(answer).append(", ");
+    //     sb.append("Result: ").append(result).append(", ");
+    //     sb.append("Score: ").append(score);
+    //     return sb.toString();
+
+    // }
 
 
 }

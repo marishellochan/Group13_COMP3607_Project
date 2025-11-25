@@ -14,15 +14,21 @@ import java.awt.event.ActionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.commons.logging.Log;
+
 import java.util.ArrayList;
+
+import com.group13.Logging.LogEntry;
 import com.group13.Players.Player;
 import com.group13.Singelton.Game;
 import com.group13.Singelton.PlayerTurnManager;
 
 public class ChoosePlayersScreen extends JPanel implements Screen {
     private JPanel playerFieldsPanel; // panel to hold player textfields
+    private Game game;
 
     public ChoosePlayersScreen(MainFrame frame) {
+        game = Game.getInstance();
         setLayout(new BorderLayout());
         setBackground(Color.RED);
 
@@ -107,6 +113,7 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
 
             playerFieldsPanel.add(tf);
             playerFieldsPanel.add(Box.createVerticalStrut(15)); // spacing
+
         }
 
         playerFieldsPanel.revalidate();
@@ -133,6 +140,8 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
             JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
             Player player = new Player(tf.getText().trim());
             players.add(player);
+            LogEntry entry = LogEntry.createPlayerJoinedEvent(String.valueOf(player.getPlayerId()), player.getPlayerName());
+            game.notifyEventLogger(entry);
             if(i ==0){
                 ptm.setCurrentPlayer(players.get(0));
             }

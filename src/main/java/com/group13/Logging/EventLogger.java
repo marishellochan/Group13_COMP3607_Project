@@ -1,20 +1,22 @@
 package com.group13.Logging;
+
 import java.io.File; //file operations
 import java.io.FileWriter; //write text for files
 import java.io.IOException; //file error
-import java.time.LocalDateTime;//current date, time
+import com.group13.Observer.Observer;
 
 //Record the events from jeopardy into csv file to see what happen
 
 //Use singletion for 1 logger
-public class EventLogger {
+public class EventLogger implements Observer {
     private static EventLogger logger; //singletion instance
     private FileWriter writer;
-    private String logFile = "event_log.csv";
+    private String logFile = "game_event_log.csv";
     private String currentGameId = "Game01"; //default
 
     private EventLogger(){
-        try{File file = new File(logFile);
+        try{
+            File file = new File(logFile);
             boolean fileExists = file.exists();
             writer = new FileWriter(logFile, true);//to write the text to the log file
             
@@ -42,20 +44,21 @@ public class EventLogger {
         this.currentGameId = gameId;
     }
 
-    //refactored log function
-    // public void log(LogEntry entry){
-    //     log(entry.getGameId(), entry.getPlayerId(), entry.getActivity(), 
-    //     entry.getCategory(), entry.getQuestionValue(), entry.getAnswer(), 
-    //     entry.getResult(), entry.getScore());
-    // }
 
-    //This is where we log the events, so we need a lot of paramters for info
-    public void log(String gameId, String playerId, String activity, String category, int questionValue, String answer, String result, int score){
+    public void updateLog(LogEntry entry){
         try{
-            String time = LocalDateTime.now().toString(); //current time
-           
+            // String gameId = currentGameId;
+            String playerId = entry.getPlayerId();
+            String activity = entry.getActivity();
+            String time = entry.getTime();
+            String category = entry.getCategory();
+            int questionValue = entry.getQuestionValue();
+            String answer = entry.getAnswer();
+            String result = entry.getResult();
+            int score = entry.getScore();
            //this would be the csv line
-            String line = gameId+","+playerId+","+activity+","+time+","+category+","+questionValue+","+answer+","+result+","+score+"\n";
+            String line = String.format("%d,%s,%s,%s,%s,%d,%s,%s,%d\n",
+                    LogEntry.getCaseId(), playerId, activity, time, category, questionValue, answer, result, score);
             writer.write(line);//write the line
             writer.flush();//save
         }catch(IOException e){
@@ -63,21 +66,23 @@ public class EventLogger {
         }
     }
 
-    public void logSystemEvent(String activity){
-        log(currentGameId, "System", activity, "", 0, "", "", 0);
-    }
+    
 
-    public void logPlayerJoined(String playerId, String playerName){
-        log(currentGameId, playerId, "Enter Player Name", "", 0,"", "", 0);
-    }
+    // public void logSystemEvent(String activity){
+    //     log(currentGameId, "System", activity, "", 0, "", "", 0);
+    // }
 
-    public void logSelectCategory(String playerId, String category) {
-        log(currentGameId, playerId, "Select Category", category, 0, "", "", 0);
-    }
+    // public void logPlayerJoined(String playerId, String playerName){
+    //     log(currentGameId, playerId, "Enter Player Name", "", 0,"", "", 0);
+    // }
 
-    public void logSelectQuestion(String playerId, String category, int value) {
-        log(currentGameId, playerId, "Select Question", category, value, "", "", 0);
-    }
+    // public void logSelectCategory(String playerId, String category) {
+    //     log(currentGameId, playerId, "Select Category", category, 0, "", "", 0);
+    // }
+
+    // public void logSelectQuestion(String playerId, String category, int value) {
+    //     log(currentGameId, playerId, "Select Question", category, value, "", "", 0);
+    // }
 
     //close when game ends
     public void close(){

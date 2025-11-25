@@ -5,9 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.group13.Singelton.Game;
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
 import com.group13.Questions.Question;
+import com.group13.Logging.LogEntry;
 import com.group13.Players.Player;
 
 public class QuestionandAnswerScreen extends JPanel implements Screen {
@@ -133,18 +135,29 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
 
         PlayerTurnManager ptm = PlayerTurnManager.getInstance();
         Player currentPlayer = ptm.getCurrentPlayer();
+        String result ="";
 
         if (correct) {
             currentPlayer.addPoints(currentQuestion.getValue());
             JOptionPane.showMessageDialog(this, "Correct!", "Nice!", JOptionPane.INFORMATION_MESSAGE);
              // Mark answered
              currentQuestion.setAnswered();
+             result = "Correct";
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect!", "Oops!", JOptionPane.ERROR_MESSAGE);
+            result = "Incorrect";
         }
 
        
-
+        LogEntry entry = LogEntry.createAnswerQuestionEvent(
+        String.valueOf(currentPlayer.getPlayerId()),
+        currentQuestion.getCategory(),
+        currentQuestion.getValue(),
+        chosen,
+        result,
+        currentPlayer.getScore()
+        );
+        Game.getInstance().notifyEventLogger(entry);
         // Move to next player
         ptm.nextTurn();
 

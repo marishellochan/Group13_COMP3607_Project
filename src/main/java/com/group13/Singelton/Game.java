@@ -52,39 +52,50 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     public void load(TemplateLoadData template){
         template.loadData(); 
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId("System");
+        entry.setActivity("Load Game Data");
+        notifyEventLogger(entry);
     }
 
     public void end(){
-        //end game 
+        LogEntry entry = new LogEntry();
+        entry.setPlayerId("System");
+        entry.setActivity("Game Ended");
+        notifyEventLogger(entry);
+        EventLogger.getInstance().close();
     }
 
-    public void registerEventLogger(Observer o) {
-        // Implementation here
+    public void registerEventLogger() {
+        this.eventLogger = EventLogger.getInstance();
+
     }
 
-    public void removeEventLogger(Observer o) {
-        // Implementation here
+    public void removeEventLogger() {
+        this.eventLogger = null;
     }
 
     public void notifyEventLogger(LogEntry entry) {
-        // Implementation here
+        if (this.eventLogger != null) {
+            this.eventLogger.updateLog(entry);
+        }
     }
 
     public void setGameData(GameData data){
         this.gameData = data;
     }
 
-    public void startGameSession(String gameId){
-        //start history when game begins
-        // this.gameHistory = new GameHistory(gameId);
-        // System.out.println("GameHistory started: "+gameId);
+    // public void startGameSession(String gameId){
+    //     //start history when game begins
+    //     // this.gameHistory = new GameHistory(gameId);
+    //     // System.out.println("GameHistory started: "+gameId);
 
-        //connect EventLogger with same gameId
-        EventLogger logger = EventLogger.getInstance();
-        logger.setGameId(gameId);
+    //     //connect EventLogger with same gameId
+    //     EventLogger logger = EventLogger.getInstance();
+    //     logger.setGameId(gameId);
 
-        //log that it started
-        logger.logSystemEvent("Game Started");
-    }
+    //     //log that it started
+    //     logger.logSystemEvent("Game Started");
+    // }
     
 }

@@ -33,6 +33,7 @@ public class GameExit {
         );
         
         if (choice == JOptionPane.YES_OPTION) {
+            Game.getInstance().end();
             mainFrame.showScreen(new GenerateReportScreen(mainFrame));
         }
     }
