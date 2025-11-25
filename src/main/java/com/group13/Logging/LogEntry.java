@@ -1,6 +1,6 @@
 package com.group13.Logging;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class LogEntry {
     private static int caseCounter = 0; // Static counter for unique case IDs
@@ -18,7 +18,7 @@ public class LogEntry {
     public LogEntry() {
         this.caseCounter++;
         this.caseId = caseCounter;;
-        this.time = LocalDate.now().toString();
+        this.time = LocalDateTime.now().toString();
        
     }
 

@@ -3,7 +3,9 @@ package com.group13.Logging;
 import java.io.File; //file operations
 import java.io.FileWriter; //write text for files
 import java.io.IOException; //file error
+import java.time.LocalDateTime;
 import com.group13.Observer.Observer;
+import com.group13.Logging.LogEntry;
 
 //Record the events from jeopardy into csv file to see what happen
 
@@ -12,7 +14,7 @@ public class EventLogger implements Observer {
     private static EventLogger logger; //singletion instance
     private FileWriter writer;
     private String logFile = "game_event_log.csv";
-    // private String currentGameId = "Game01"; //default
+    private String currentGameId;
 
     private EventLogger(){
         try{
@@ -40,25 +42,26 @@ public class EventLogger implements Observer {
         return logger;
     }
 
-    // public void setGameId(String gameId) {
-    //     this.currentGameId = gameId;
-    // }
+    //unique game id for the log
+     public void setGameId(String gameId) {
+         this.currentGameId = gameId;
+}
 
-
+//required method from observer interface
+    @Override
     public void updateLog(LogEntry entry){
         try{
-            // String gameId = currentGameId;
-            String playerId = entry.getPlayerId();
-            String activity = entry.getActivity();
-            String time = entry.getTime();
-            String category = entry.getCategory();
-            int questionValue = entry.getQuestionValue();
-            String answer = entry.getAnswer();
-            String result = entry.getResult();
-            int score = entry.getScore();
-           //this would be the csv line
-            String line = String.format("%d,%s,%s,%s,%s,%d,%s,%s,%d\n",
-                    LogEntry.getCaseId(), playerId, activity, time, category, questionValue, answer, result, score);
+            String time = LocalDateTime.now().toString(); //fix for current time
+            String line = String.format("%s,%s,%s,%s,%s,%d,%s,%s,%d\n",
+                    currentGameId, // fix for string game id
+                    entry.getPlayerId(), 
+                    entry.getActivity(), 
+                    time, //for iso format
+                    entry.getCategory(), 
+                    entry.getQuestionValue(), 
+                    entry.getAnswer(), 
+                    entry.getResult(), 
+                    entry.getScore());
             writer.write(line);//write the line
             writer.flush();//save
         }catch(IOException e){
