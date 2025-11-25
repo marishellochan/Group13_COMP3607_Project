@@ -3,9 +3,9 @@ package com.group13.Logging;
 import java.time.LocalDateTime;
 
 public class LogEntry {
-   // private static int caseCounter = 0; // Static counter for unique case IDs
-    //private static int caseId; // Unique case ID for each log entry
-    private String caseId;
+    private static int caseCounter = 0; // Static counter for unique case IDs
+    private static int caseId; // Unique case ID for each log entry
+    // private String caseId;
     private String playerId;
     private String time;
     private String activity;
@@ -15,30 +15,31 @@ public class LogEntry {
     private String result;
     private int score;
   
-    public LogEntry(String caseId) {
-        this.caseId = caseId; //for gamesession id
+    public LogEntry() {
+        this.caseId = ++caseCounter;
+        // this.caseId = caseId; //for gamesession id
         this.time = LocalDateTime.now().toString();
        
     }
 
-    public static LogEntry createSystemEvent(String caseId, String activity) {
-        LogEntry entry = new LogEntry(caseId);
+    public static LogEntry createSystemEvent(String activity) {
+        LogEntry entry = new LogEntry();
         entry.setPlayerId("System");
         entry.setActivity(activity);
         return entry;
     }
     
     // Player joined event
-    public static LogEntry createPlayerJoinedEvent(String caseId, String playerId, String playerName) {
-        LogEntry entry = new LogEntry(caseId);
+    public static LogEntry createPlayerJoinedEvent(String playerId, String playerName) {
+        LogEntry entry = new LogEntry();
         entry.setPlayerId(playerId);
         entry.setActivity("Enter Player Name");
         return entry;
     }
     
     // Select category event
-    public static LogEntry createSelectCategoryEvent(String caseId, String playerId, String category) {
-        LogEntry entry = new LogEntry(caseId);
+    public static LogEntry createSelectCategoryEvent(String playerId, String category) {
+        LogEntry entry = new LogEntry();
         entry.setPlayerId(playerId);
         entry.setActivity("Select Category");
         entry.setCategory(category);
@@ -46,8 +47,8 @@ public class LogEntry {
     }
     
     // Select question event
-    public static LogEntry createSelectQuestionEvent(String caseId, String playerId, String category, int questionValue) {
-        LogEntry entry = new LogEntry(caseId);
+    public static LogEntry createSelectQuestionEvent(String playerId, String category, int questionValue) {
+        LogEntry entry = new LogEntry();
         entry.setPlayerId(playerId);
         entry.setActivity("Select Question");
         entry.setCategory(category);
@@ -56,10 +57,10 @@ public class LogEntry {
     }
     
     // Answer question event
-    public static LogEntry createAnswerQuestionEvent(String caseId, String playerId, String category, 
+    public static LogEntry createAnswerQuestionEvent(String playerId, String category, 
                                                       int questionValue, String answer, 
                                                       String result, int score) {
-        LogEntry entry = new LogEntry(caseId);
+        LogEntry entry = new LogEntry();
         entry.setPlayerId(playerId);
         entry.setActivity("Answer Question");
         entry.setCategory(category);
@@ -70,8 +71,8 @@ public class LogEntry {
         return entry;
     }
 
-    public static LogEntry scoreUpdatedEvent(String caseId, String playerId, int newScore) {
-        LogEntry entry = new LogEntry(caseId);
+    public static LogEntry scoreUpdatedEvent(String playerId, int newScore) {
+        LogEntry entry = new LogEntry();
         entry.setPlayerId(playerId);
         entry.setActivity("Score Updated");
         entry.setScore(newScore);
@@ -80,9 +81,9 @@ public class LogEntry {
 
 
 
-    public String getCaseId(){ 
-        return this.caseId;
-    }
+    // public String getCaseId(){ 
+    //     return this.caseId;
+    // }
     public String getTime(){ return time;
     }
     public String getActivity(){ return activity;
