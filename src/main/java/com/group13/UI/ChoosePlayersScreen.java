@@ -3,23 +3,31 @@ package com.group13.UI;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import com.group13.Logging.LogEntry;
 import com.group13.Players.Player;
 import com.group13.Singelton.Game;
+import com.group13.Singelton.GameController;
 import com.group13.Singelton.PlayerTurnManager;
 
 public class ChoosePlayersScreen extends JPanel implements Screen {
     private JPanel playerFieldsPanel;
     private MainFrame mainFrame;
+    private GameController controller = GameController.getInstance();
 
     public ChoosePlayersScreen(MainFrame frame) {
         this.mainFrame = frame;
+        this.controller = GameController.getInstance();
         setLayout(new BorderLayout());
         setBackground(Color.RED);
 
@@ -52,7 +60,12 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         spinner.setFont(new Font("Tahoma", Font.BOLD, 16));
         spinner.setMaximumSize(new Dimension(80, 40));
         spinner.setAlignmentX(CENTER_ALIGNMENT);
-        spinner.addChangeListener(e -> updatePlayerFields((int) spinner.getValue()));
+        spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                updatePlayerFields((int) spinner.getValue());
+            }
+        });
 
         titlePanel.add(label);
         titlePanel.add(Box.createVerticalStrut(15));
@@ -79,7 +92,12 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         JButton btnStart = new JButton("Start Game!");
         btnStart.setFont(new Font("Tahoma", Font.BOLD, 20));
         btnStart.setPreferredSize(new Dimension(180, 50));
-        btnStart.addActionListener(e -> handleStartGame());
+        btnStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleStartGame();
+            }
+        });
         bottomPanel.add(btnStart);
 
         return bottomPanel;
@@ -111,9 +129,18 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
             return;
         }
 
-        ArrayList<Player> players = createPlayers(playerCount);
-        initializeGameWithPlayers(players);
+        ArrayList<String> playerNames = getPlayerNames(playerCount);
+        controller.initializePlayers(playerNames);
         mainFrame.showScreen(new StartGameScreen(mainFrame));
+    }
+
+    private ArrayList<String> getPlayerNames(int count) {
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
+            names.add(tf.getText().trim());
+        }
+        return names;
     }
 
     private boolean hasEmptyFields(int playerCount) {
@@ -126,30 +153,6 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         return false;
     }
 
-    private ArrayList<Player> createPlayers(int count) {
-        ArrayList<Player> players = new ArrayList<>();
-        Game game = Game.getInstance();
-
-        for (int i = 0; i < count; i++) {
-            JTextField tf = (JTextField) playerFieldsPanel.getComponent(i * 2);
-            Player player = new Player(tf.getText().trim());
-            players.add(player);
-            
-            LogEntry entry = LogEntry.createPlayerJoinedEvent(
-                String.valueOf(player.getPlayerId()), 
-                player.getPlayerName()
-            );
-            game.notifyEventLogger(entry);
-        }
-        return players;
-    }
-
-    private void initializeGameWithPlayers(ArrayList<Player> players) {
-        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
-        ptm.set_Players(players);
-        ptm.setCurrentPlayer(players.get(0));
-        players.forEach(p -> System.out.println("Player added: " + p.getPlayerName()));
-    }
 
     @Override
     public JPanel getPanel() {

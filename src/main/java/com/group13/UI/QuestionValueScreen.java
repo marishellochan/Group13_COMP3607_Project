@@ -3,6 +3,7 @@ package com.group13.UI;
 import java.util.List;
 
 import com.group13.Singelton.Game;
+import com.group13.Singelton.GameController;
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
 import com.group13.Logging.LogEntry;
@@ -17,12 +18,14 @@ public class QuestionValueScreen extends JPanel implements Screen {
     private MainFrame mainFrame;
     private JButton[] valueButtons;
     private GameData gameData;
+    private GameController controller;
     private String selectedCategory;
 
     public QuestionValueScreen(MainFrame frame, String category) {
         this.mainFrame = frame;
         this.selectedCategory = category;
         this.gameData = GameData.getInstance();
+        this.controller = GameController.getInstance();
         
         setLayout(new BorderLayout());
         setBackground(Color.GREEN);
@@ -48,7 +51,12 @@ public class QuestionValueScreen extends JPanel implements Screen {
             Integer value = values.get(i);
             JButton btn = new JButton(value.toString());
             btn.setFont(new Font("Tahoma", Font.BOLD, 20));
-            btn.addActionListener(e -> handleValueSelection(value));
+            btn.addActionListener( new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    handleValueSelection(value);
+                }
+            });
             
             valueButtons[i] = btn;
             panel.add(btn);
@@ -58,26 +66,18 @@ public class QuestionValueScreen extends JPanel implements Screen {
     }
 
     private void handleValueSelection(Integer value) {
-        Question question = gameData.getQuestionByCategoryAndValue(selectedCategory, value);
-        logQuestionSelection(value);
-        mainFrame.showScreen(new QuestionandAnswerScreen(mainFrame, question));
-    }
-
-    private void logQuestionSelection(Integer value) {
-        PlayerTurnManager ptm = PlayerTurnManager.getInstance();
-        LogEntry entry = LogEntry.createSelectQuestionEvent(
-            String.valueOf(ptm.getCurrentPlayer().getPlayerId()),
-            selectedCategory, value);
-        Game.getInstance().notifyEventLogger(entry);
+        Question question = controller.selectQuestion(selectedCategory, value);
+        if (question != null) {
+            mainFrame.showScreen(new QuestionandAnswerScreen(mainFrame, question));
+        }
     }
 
     private void updateValueButtons() {
-        List<Integer> values = gameData.getValues();
+        List<Integer> values = controller.getQuestionValues();
         
         for (int i = 0; i < valueButtons.length; i++) {
             Integer value = values.get(i);
-            Question question = gameData.getQuestionByCategoryAndValue(selectedCategory, value);
-            boolean isAnswered = (question != null) && question.isAnswered();
+            boolean isAnswered = !controller.isQuestionAvailable(selectedCategory, value);
             valueButtons[i].setEnabled(!isAnswered);
         }
     }

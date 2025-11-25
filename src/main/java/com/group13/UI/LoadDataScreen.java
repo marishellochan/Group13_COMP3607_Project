@@ -8,15 +8,20 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import com.group13.Singelton.*;
 import com.group13.TemplatePattern_LoadData.*;
 
 public class LoadDataScreen extends JPanel implements Screen {
     private JComboBox<String> dataTypeCombo;
     private MainFrame mainFrame;
+    private GameController controller = GameController.getInstance();
 
     public LoadDataScreen(MainFrame frame) {
         this.mainFrame = frame;
+        this.controller = GameController.getInstance();
         
         setBackground(new Color(0, 128, 255));
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -29,7 +34,12 @@ public class LoadDataScreen extends JPanel implements Screen {
         JButton btnLoad = new JButton("Load Game Data");
         btnLoad.setFont(new Font("Tahoma", Font.BOLD, 16));
         btnLoad.setBounds(172, 180, 150, 50);
-        btnLoad.addActionListener(e -> handleLoadData());
+        btnLoad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleLoadData();
+            }
+        });
         add(btnLoad);
 
         JLabel label = new JLabel("Select File to Load Game Data from:");
@@ -50,7 +60,7 @@ public class LoadDataScreen extends JPanel implements Screen {
             return;
         }
 
-        loadAndDisplayData(template);
+        controller.loadGame(template);
         mainFrame.showScreen(new ChoosePlayersScreen(mainFrame));
     }
 
@@ -61,14 +71,6 @@ public class LoadDataScreen extends JPanel implements Screen {
             case "JSON": return new LoadDataJSON();
             default:     return null;
         }
-    }
-
-    private void loadAndDisplayData(TemplateLoadData template) {
-        Game game = Game.getInstance();
-        GameData gameData = GameData.getInstance();
-        
-        game.load(template);
-        gameData.printQuestions();
     }
 
     @Override

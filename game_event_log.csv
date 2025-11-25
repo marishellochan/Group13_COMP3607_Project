@@ -26,3 +26,12 @@ Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result
 6,1,Select Question,2025-11-25,Arrays,200,null,null,0
 7,1,Answer Question,2025-11-25,Arrays,200,A,Incorrect,0
 8,System,Game Ended,2025-11-25,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T14:08:02.810528900,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T14:08:04.650965200,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T14:08:14.055043300,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T14:08:14.055043300,null,0,null,null,0
+null,3,Enter Player Name,2025-11-25T14:08:14.055043300,null,0,null,null,0
+null,1,Select Category,2025-11-25T14:08:15.926906500,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T14:08:16.650078300,Variables & Data Types,200,null,null,0
+null,1,Answer Question,2025-11-25T14:08:21.901066800,Variables & Data Types,200,B,Incorrect,0
+null,System,Game Ended,2025-11-25T14:08:25.647343200,null,0,null,null,0
