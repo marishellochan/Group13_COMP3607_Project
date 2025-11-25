@@ -35,3 +35,11 @@ null,1,Select Category,2025-11-25T14:08:15.926906500,Variables & Data Types,0,nu
 null,1,Select Question,2025-11-25T14:08:16.650078300,Variables & Data Types,200,null,null,0
 null,1,Answer Question,2025-11-25T14:08:21.901066800,Variables & Data Types,200,B,Incorrect,0
 null,System,Game Ended,2025-11-25T14:08:25.647343200,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T17:51:24.970841500,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T17:51:27.132886400,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T17:51:34.027842900,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T17:51:34.030083500,null,0,null,null,0
+null,1,Select Category,2025-11-25T17:51:35.814962700,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T17:51:36.706960900,Variables & Data Types,100,null,null,0
+null,1,Answer Question,2025-11-25T17:51:39.109901600,Variables & Data Types,100,A,Incorrect,0
+null,System,Game Ended,2025-11-25T17:51:42.604023,null,0,null,null,0

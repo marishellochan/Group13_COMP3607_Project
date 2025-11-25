@@ -35,7 +35,7 @@ public class GameController  { // this is what the UI screens will communicate w
         game.end();
     }
 
-    public void initializePlayers(String caseId, ArrayList<String> playerNames) {
+    public void initializePlayers(ArrayList<String> playerNames) {
         ArrayList<Player> players = new ArrayList<>();
         
         for (String name : playerNames) {
@@ -43,7 +43,7 @@ public class GameController  { // this is what the UI screens will communicate w
             players.add(player);
             
             // Create log entry
-            LogEntry entry = LogEntry.createPlayerJoinedEvent(caseId, 
+            LogEntry entry = LogEntry.createPlayerJoinedEvent(
                 String.valueOf(player.getPlayerId()), 
                 player.getPlayerName());
             game.notifyEventLogger(entry);
@@ -84,10 +84,9 @@ public class GameController  { // this is what the UI screens will communicate w
         return false;
     }
 
-    public void selectCategory(String caseId, String category) {
+    public void selectCategory(String category) {
         Player currentPlayer = game.getTurnManager().getCurrentPlayer();
         LogEntry entry = LogEntry.createSelectCategoryEvent(
-            caseId, 
             String.valueOf(currentPlayer.getPlayerId()), 
             category
         );
@@ -104,14 +103,13 @@ public class GameController  { // this is what the UI screens will communicate w
         return q != null && !q.isAnswered();
     }
 
-    public Question selectQuestion(String caseId, String category, int value) {
+    public Question selectQuestion(String category, int value) {
         Player currentPlayer = game.getTurnManager().getCurrentPlayer();
         Question question = game.getGameData().getQuestionByCategoryAndValue(category, value);
         
         if (question != null) {
             LogEntry entry = LogEntry.createSelectQuestionEvent(
-                caseId, 
-                String.valueOf(currentPlayer.getPlayerId()),
+              String.valueOf(currentPlayer.getPlayerId()),
                 category, 
                 value
             );
@@ -135,11 +133,10 @@ public class GameController  { // this is what the UI screens will communicate w
         question.setAnswered();
 
         //use new caseId from turn manager
-        String caseId = game.getTurnManager().getCurrentCaseId();
+        // String caseId = game.getTurnManager().getCurrentCaseId();
         
         // Logging
         LogEntry entry = LogEntry.createAnswerQuestionEvent(
-            caseId,
             String.valueOf(currentPlayer.getPlayerId()),
             question.getCategory(),
             question.getValue(),
@@ -150,7 +147,7 @@ public class GameController  { // this is what the UI screens will communicate w
         game.notifyEventLogger(entry);
         
         if (correct) {
-            LogEntry scoreEntry = LogEntry.scoreUpdatedEvent(caseId, 
+            LogEntry scoreEntry = LogEntry.scoreUpdatedEvent( 
                 String.valueOf(currentPlayer.getPlayerId()), 
                 currentPlayer.getScore()
             );
