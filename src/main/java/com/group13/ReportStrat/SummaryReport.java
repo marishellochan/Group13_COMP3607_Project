@@ -1,7 +1,7 @@
 package com.group13.ReportStrat;
 
-import com.group13.GamePlay.GameHistory;
 import com.group13.GamePlay.Turn;
+import com.group13.Singelton.GameHistory;
 
 import java.io.File;
 import java.util.List;
@@ -16,9 +16,8 @@ public class SummaryReport {
     }
 
     public File createReport(GameHistory history) throws Exception {
-        String caseId = history.getCaseId();
         List<Turn> turns = history.getTurns();
-        return strategy.generateReport(turns, caseId);
+        return strategy.generateReport(turns);
     }
 
 }

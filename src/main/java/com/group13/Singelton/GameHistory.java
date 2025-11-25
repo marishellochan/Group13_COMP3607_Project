@@ -1,6 +1,9 @@
-package com.group13.GamePlay;
+package com.group13.Singelton;
 
 import java.util.List;
+
+import com.group13.GamePlay.Turn;
+
 import java.util.ArrayList;
 
 
@@ -8,13 +11,20 @@ import java.util.ArrayList;
 //this generates the game report
 
 public class GameHistory {
+    private static GameHistory instance = null;
     private List<Turn> turns;
     private String caseId;
 
     //empty record
-    public GameHistory(String caseId){
-        this.caseId = caseId;
+    private GameHistory(){
         this.turns = new ArrayList<>();//empty list
+    }
+
+    public static GameHistory getInstance(){
+        if (instance == null){
+            instance = new GameHistory();
+        }
+        return instance;
     }
 
     //add the turn to record
@@ -31,24 +41,6 @@ public class GameHistory {
     //turn count
     public int getTurnCount(){
         return turns.size();}
-
-    //get one player turn
-    public List<Turn> getTurnsForPlayer(String playerName){
-        List<Turn> playerTurns = new ArrayList<>();
-
-        //go through all
-        for(Turn turn : turns){
-            if(turn.getPlayerName().equals(playerName)){
-                playerTurns.add(turn);
-            }
-        }
-        return playerTurns;
-    }
-
-    //game id
-    public String getCaseId(){
-        return caseId;
-    }
 
     //print turns
     public void printAllTurns(){

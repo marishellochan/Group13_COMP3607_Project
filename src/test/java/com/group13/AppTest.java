@@ -1,8 +1,8 @@
 package com.group13;
 
-import com.group13.GamePlay.GameHistory;
 import com.group13.GamePlay.Turn;
 import com.group13.ReportStrat.*;
+import com.group13.Singelton.GameHistory;
 import com.group13.Logging.EventLogger;
 import com.group13.Logging.LogEntry;
 import com.group13.Players.Player;

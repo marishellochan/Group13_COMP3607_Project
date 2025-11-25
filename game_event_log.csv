@@ -44,3 +44,43 @@ null,1,Select Question,2025-11-25T17:51:36.706960900,Variables & Data Types,100,
 null,1,Answer Question,2025-11-25T17:51:39.109901600,Variables & Data Types,100,A,Incorrect,0
 null,System,Game Ended,2025-11-25T17:51:42.604023,null,0,null,null,0
 null,System,Game Start up..,2025-11-25T18:09:47.133514400,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T18:23:32.872164,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:23:34.658210600,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:23:40.916754300,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:23:40.918777400,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:23:42.598056800,Control Structures,0,null,null,0
+null,1,Select Question,2025-11-25T18:23:43.342356100,Control Structures,100,null,null,0
+null,1,Answer Question,2025-11-25T18:23:45.605854100,Control Structures,100,C,Incorrect,0
+null,2,Select Category,2025-11-25T18:23:49.337165,Functions,0,null,null,0
+null,2,Select Question,2025-11-25T18:23:50.149383,Functions,100,null,null,0
+null,2,Answer Question,2025-11-25T18:23:51.831618400,Functions,100,C,Incorrect,0
+null,System,Game Ended,2025-11-25T18:23:55.024718400,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T18:25:45.434101400,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:25:47.975442400,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:25:54.401476300,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:25:54.402474300,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:25:55.969914400,Control Structures,0,null,null,0
+null,1,Select Question,2025-11-25T18:25:56.584819900,Control Structures,200,null,null,0
+null,1,Answer Question,2025-11-25T18:25:58.400719500,Control Structures,200,C,Incorrect,0
+null,2,Select Category,2025-11-25T18:26:00.585378500,Functions,0,null,null,0
+null,2,Select Question,2025-11-25T18:26:01.120884100,Functions,300,null,null,0
+null,2,Answer Question,2025-11-25T18:26:02.429274100,Functions,300,B,Incorrect,0
+null,System,Game Ended,2025-11-25T18:26:04.902263200,null,0,null,null,0
+null,System,Game Start up..,2025-11-25T18:33:24.436260,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:33:26.461719800,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:33:37.659885500,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:33:37.661362200,null,0,null,null,0
+null,3,Enter Player Name,2025-11-25T18:33:37.662362500,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:33:40.176580,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T18:33:41.144854400,Variables & Data Types,100,null,null,0
+null,1,Answer Question,2025-11-25T18:33:43.775652400,Variables & Data Types,100,A,Incorrect,0
+null,2,Select Category,2025-11-25T18:33:47.187200900,Variables & Data Types,0,null,null,0
+null,2,Select Question,2025-11-25T18:33:48.403655600,Variables & Data Types,200,null,null,0
+null,2,Answer Question,2025-11-25T18:33:52.272511200,Variables & Data Types,200,B,Incorrect,0
+null,System,Game Start up..,2025-11-25T18:44:59.187545,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T18:45:00.901519200,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T18:45:07.946507300,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T18:45:07.946507300,null,0,null,null,0
+null,1,Select Category,2025-11-25T18:45:09.537007300,Variables & Data Types,0,null,null,0
+null,1,Select Question,2025-11-25T18:45:10.207321300,Variables & Data Types,100,null,null,0
+null,1,Answer Question,2025-11-25T18:45:12.231965600,Variables & Data Types,100,A,Incorrect,0

@@ -15,14 +15,14 @@ import java.util.Map;
 public class TXTStrat implements ReportStrat {
 
     @Override
-    public File generateReport(List<Turn> turns, String caseId) throws Exception {
-        File outFile = new File(caseId + "_report.txt");
+    public File generateReport(List<Turn> turns) throws Exception {
+        File outFile = new File("game_report.txt");
         
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
             // Header
             writer.write("=".repeat(100));
             writer.newLine();
-            writer.write("GAME REPORT: " + caseId);
+            writer.write("GAME REPORT");
             writer.newLine();
             writer.write("=".repeat(100));
             writer.newLine();

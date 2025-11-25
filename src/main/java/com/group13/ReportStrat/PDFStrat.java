@@ -22,8 +22,8 @@ public class PDFStrat implements ReportStrat {
     private static final float LINE_HEIGHT = 15;
 
     @Override
-    public File generateReport(List<Turn> turns, String caseId) throws Exception {
-        File outFile = new File(caseId + "_report.pdf");
+    public File generateReport(List<Turn> turns) throws Exception {
+        File outFile = new File("game_report.pdf");
 
         PDDocument doc = new PDDocument();
         float yPosition = PAGE_HEIGHT - MARGIN;
@@ -34,7 +34,7 @@ public class PDFStrat implements ReportStrat {
         PDPageContentStream contentStream = new PDPageContentStream(doc, page);
 
         // Title
-        yPosition = writeTitle(contentStream, "GAME REPORT: " + caseId, yPosition);
+        yPosition = writeTitle(contentStream, "GAME REPORT", yPosition);
         yPosition -= LINE_HEIGHT;
 
         // Final Scores Section

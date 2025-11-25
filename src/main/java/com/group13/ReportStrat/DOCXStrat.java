@@ -14,8 +14,8 @@ import java.util.Map;
 public class DOCXStrat implements ReportStrat {
 
     @Override
-    public File generateReport(List<Turn> turns, String caseId) throws Exception {
-        File outFile = new File(caseId + "_report.docx");
+    public File generateReport(List<Turn> turns) throws Exception {
+        File outFile = new File("game_report.docx");
 
         XWPFDocument doc = new XWPFDocument();
 
@@ -23,7 +23,7 @@ public class DOCXStrat implements ReportStrat {
         XWPFParagraph titlePara = doc.createParagraph();
         titlePara.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun titleRun = titlePara.createRun();
-        titleRun.setText("GAME REPORT: " + caseId);
+        titleRun.setText("GAME REPORT");
         titleRun.setBold(true);
         titleRun.setFontSize(16);
 

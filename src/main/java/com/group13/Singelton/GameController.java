@@ -1,13 +1,22 @@
 package com.group13.Singelton;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.group13.GamePlay.Turn;
 import com.group13.Logging.LogEntry;
 import com.group13.Players.Player;
 import com.group13.Questions.Question;
+import com.group13.ReportStrat.DOCXStrat;
+import com.group13.ReportStrat.PDFStrat;
+import com.group13.ReportStrat.ReportStrat;
+import com.group13.ReportStrat.SummaryReport;
+import com.group13.ReportStrat.TXTStrat;
 import com.group13.Singelton.Game;
 import com.group13.TemplatePattern_LoadData.TemplateLoadData;
+import com.group13.ReportStrat.*;
+import java.io.File;
 
 public class GameController  { // this is what the UI screens will communicate with to perform actions
 
@@ -130,8 +139,17 @@ public class GameController  { // this is what the UI screens will communicate w
         
         question.setAnswered();
 
-        //use new caseId from turn manager
-        // String caseId = game.getTurnManager().getCurrentCaseId();
+        Turn turn = new Turn(
+        currentPlayer.getPlayerName(),
+        question,
+        answer,
+        correct,
+        question.getValue(),
+        currentPlayer.getScore()
+        );
+    
+        // Add turn to game history
+        game.getGameHistory().recordTurn(turn);
         
         // Logging
         LogEntry entry = LogEntry.createAnswerQuestionEvent(
@@ -163,6 +181,36 @@ public class GameController  { // this is what the UI screens will communicate w
             }
         }
         return true;
+    }
+
+    // get game history for report generation
+    public File generateReport(String format) throws Exception {
+    GameHistory history = game.getGameHistory();
+    
+    if (history.getTurnCount() == 0) {
+        throw new Exception("No game data to generate report from!");
+    }
+    
+    ReportStrat strategy = getReportStrategy(format);
+    SummaryReport reporter = new SummaryReport(strategy);
+    return reporter.createReport(history);
+    }
+
+    private ReportStrat getReportStrategy(String format) {
+        switch (format.toUpperCase()) {
+            case "TXT":  return new TXTStrat();
+            case "DOCX": return new DOCXStrat();
+            case "PDF":  return new PDFStrat();
+            default:     return new TXTStrat();
+        }
+    }
+
+    public int getTotalTurns() {
+        return game.getGameHistory().getTurnCount();
+    }
+
+    public boolean hasGameData() {
+        return game.getGameHistory().getTurnCount() > 0;
     }
 
 }

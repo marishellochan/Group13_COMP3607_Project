@@ -14,6 +14,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private Observer eventLogger; // Marishel : the observer to log events
     private PlayerTurnManager playerTurnManager;
     private GameData gameData;
+    private GameHistory gameHistory;
 
     // private GameHistory gameHistory; //Aaron: track turns for reporting
 
@@ -21,6 +22,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
         // Private constructor to prevent instantiation
         this.playerTurnManager = PlayerTurnManager.getInstance();
         this.gameData = GameData.getInstance();
+        this.gameHistory = GameHistory.getInstance();
         registerEventLogger();
 
 
@@ -89,6 +91,10 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     public GameData getGameData(){
         return this.gameData;
+    }
+
+    public GameHistory getGameHistory(){
+        return this.gameHistory;
     }
 
     // public void setGameData(GameData data){

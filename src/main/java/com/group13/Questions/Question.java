@@ -59,7 +59,18 @@ public class Question {
     }
 
     public boolean checkAnswer(String answer) {
-        return this.answer.trim().equals(answer.trim());
+        switch(answer.trim().toUpperCase()) {
+            case "A":
+                return getOptionA().equalsIgnoreCase(this.answer);
+            case "B":
+                return getOptionB().equalsIgnoreCase(this.answer);
+            case "C":
+                return getOptionC().equalsIgnoreCase(this.answer);
+            case "D":
+                return getOptionD().equalsIgnoreCase(this.answer);
+            default:
+                return false;
+        }
     }
     
     public boolean isAnswered() {
