@@ -2,8 +2,6 @@ package com.group13.Singelton;
 
 import java.awt.EventQueue;
 
-import org.apache.commons.logging.Log;
-
 import com.group13.TemplatePattern_LoadData.TemplateLoadData;
 import com.group13.UI.MainFrame;
 import  com.group13.Logging.*;
