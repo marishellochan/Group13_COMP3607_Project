@@ -1,1 +1,9 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
+1,System,Load Game Data,2025-11-24,null,0,null,null,0
+2,1,Enter Player Name,2025-11-24,null,0,null,null,0
+3,2,Enter Player Name,2025-11-24,null,0,null,null,0
+4,3,Enter Player Name,2025-11-24,null,0,null,null,0
+5,3,Select Category,2025-11-24,Arrays,0,null,null,0
+6,3,Select Question,2025-11-24,Arrays,200,null,null,0
+7,3,Answer Question,2025-11-24,Arrays,200,C,Incorrect,0
+8,System,Game Ended,2025-11-24,null,0,null,null,0

@@ -19,6 +19,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private Game() {
         // Private constructor to prevent instantiation
         this.playerTurnManager = PlayerTurnManager.getInstance();
+        registerEventLogger();
     }
 
     public static Game getInstance() {
