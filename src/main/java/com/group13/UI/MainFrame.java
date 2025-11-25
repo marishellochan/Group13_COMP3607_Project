@@ -1,6 +1,10 @@
 package com.group13.UI;
 
 import javax.swing.*;
+
+import com.group13.Singelton.Game;
+import com.group13.Singelton.GameExit;
+
 import java.awt.*;
 
 // Main application frame
@@ -14,6 +18,9 @@ public class MainFrame extends JFrame {
 
         contentPane = new JPanel(new BorderLayout());
         setContentPane(contentPane);
+
+        // Set MainFrame in GameExit singleton
+        GameExit.getInstance().setMainFrame(this);
 
         showScreen(new LoadDataScreen(this));
 

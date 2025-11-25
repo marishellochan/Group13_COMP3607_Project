@@ -17,20 +17,8 @@ public class CategoryScreen extends JPanel implements Screen {
         setLayout(new BorderLayout());
         setBackground(Color.BLUE);
 
-        // // Top panel for quit button
-        // JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        // topPanel.setBackground(Color.BLUE);
-        
-        // JButton quitBtn = new JButton("QUIT");
-        // quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        // quitBtn.setBackground(Color.RED);
-        // quitBtn.setForeground(Color.WHITE);
-        // quitBtn.setPreferredSize(new Dimension(80, 30));
-        // quitBtn.addActionListener(e -> System.exit(0));
-        // topPanel.add(quitBtn);
-
+        //quit button
         JPanel topPanel = QuitButtonFactory.createQuitButtonPanel(Color.RED);
-        
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel for category buttons

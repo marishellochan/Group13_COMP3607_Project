@@ -3,6 +3,8 @@ package com.group13.UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import com.group13.Singelton.GameData;
 import com.group13.Singelton.PlayerTurnManager;
 import com.group13.Questions.Question;
@@ -38,14 +40,6 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
 
 
         // // Quit Button
-        // JButton quitBtn = new JButton("QUIT");
-        // quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        // quitBtn.setBackground(Color.WHITE);
-        // quitBtn.setForeground(Color.RED);
-        // quitBtn.setBounds(390, 20, 80, 25);
-        // quitBtn.addActionListener(e -> System.exit(0));
-        // add(quitBtn);
-
         JButton quitBtn = QuitButtonFactory.createQuitButton(Color.RED); // Default white bg, red text
         quitBtn.setBounds(390, 20, 80, 25);
         add(quitBtn);
@@ -106,8 +100,11 @@ public class QuestionandAnswerScreen extends JPanel implements Screen {
         submitBtn.setBounds(200, 320, 100, 30);
         submitBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-        submitBtn.addActionListener((ActionEvent e) -> handleSubmit());
-
+        submitBtn.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                handleSubmit();
+            }   
+        }));
         add(submitBtn);
     }
 

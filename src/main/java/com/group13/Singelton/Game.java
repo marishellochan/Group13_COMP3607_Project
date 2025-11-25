@@ -18,6 +18,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 
     private Game() {
         // Private constructor to prevent instantiation
+        this.playerTurnManager = PlayerTurnManager.getInstance();
     }
 
     public static Game getInstance() {
@@ -30,10 +31,6 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     // public GameHistory getGameHistory() {
     //     return this.gameHistory;
     // }
-
-    public void setTurnManager(PlayerTurnManager ptm) {
-        this.playerTurnManager = ptm;
-    }
 
     public PlayerTurnManager getTurnManager() {
         return this.playerTurnManager;

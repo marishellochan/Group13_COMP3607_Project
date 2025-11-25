@@ -30,19 +30,7 @@ public class ChoosePlayersScreen extends JPanel implements Screen {
         JPanel topSection = new JPanel(new BorderLayout());
         topSection.setOpaque(false);
 
-        // Quit button 
-        // JPanel quitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        // quitPanel.setOpaque(false);
-        
-        // JButton quitBtn = new JButton("QUIT");
-        // quitBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-        // quitBtn.setBackground(Color.WHITE);
-        // quitBtn.setForeground(Color.RED);
-        // quitBtn.setPreferredSize(new Dimension(80, 30));
-        // quitBtn.addActionListener(e -> System.exit(0));
-        // quitPanel.add(quitBtn);
-        
-        // topSection.add(quitPanel, BorderLayout.NORTH);
+        // quit button section
         JPanel quitPanel = QuitButtonFactory.createQuitButtonPanel(Color.WHITE); // White btn with red text by default
         quitPanel.setOpaque(false);
         topSection.add(quitPanel, BorderLayout.NORTH);
