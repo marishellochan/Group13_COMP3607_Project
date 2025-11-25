@@ -15,9 +15,8 @@ public class LogEntry {
     private String result;
     private int score;
   
-    public LogEntry() {
-        this.caseId = ++caseCounter;
-        // this.caseId = caseId; //for gamesession id
+    public LogEntry(String caseId) {
+        this.caseId = caseId; //for gamesession id
         this.time = LocalDateTime.now().toString();
        
     }
