@@ -12,9 +12,11 @@ public class PlayerTurnManager {
     private int currentTurn = 1;
     private Player currentPlayer;
     private List<Player> players;
+    private String gameSessionId; //for game id
 
     private PlayerTurnManager() {
         // Private constructor to prevent instantiation
+        this.gameSessionId = "G" + System.currentTimeMillis(); // Unique game session ID using timestamp to never repeat
     }
 
     public static PlayerTurnManager getInstance() {
@@ -27,6 +29,12 @@ public class PlayerTurnManager {
     public void set_Players(ArrayList<Player> players){
         this.players = players;
         this.currentNumberOfPlayers = players.size();
+        this.currentPlayer = players.get(0); //start with first player
+    }
+
+    //Case id whith game session and turn
+    public String getCurrentCaseId(){
+        return gameSessionId + "_" + String.format("%02d", currentTurn);
     }
 
     public List<Player> getPlayers() {
@@ -53,10 +61,4 @@ public class PlayerTurnManager {
         currentTurn = (currentTurn % currentNumberOfPlayers) + 1;
         currentPlayer = players.get(currentTurn - 1);
     }
-
-
-
-    
-
-
 }
