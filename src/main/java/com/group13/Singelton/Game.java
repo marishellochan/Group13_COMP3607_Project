@@ -13,8 +13,8 @@ import com.group13.UI.MainFrame;
 public class Game implements Subject { // Marishel : the game is the subject so whenever an action is done, it will notify its EventLogger
 
     private static Game instance;
-    private PlayerTurnManager playerTurnManager;
     private Observer eventLogger; // Marishel : the observer to log events
+    private PlayerTurnManager playerTurnManager;
     private GameData gameData;
 
     // private GameHistory gameHistory; //Aaron: track turns for reporting
@@ -22,7 +22,10 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     private Game() {
         // Private constructor to prevent instantiation
         this.playerTurnManager = PlayerTurnManager.getInstance();
+        this.gameData = GameData.getInstance();
         registerEventLogger();
+
+
     }
 
     public static Game getInstance() {
@@ -35,11 +38,6 @@ public class Game implements Subject { // Marishel : the game is the subject so 
     // public GameHistory getGameHistory() {
     //     return this.gameHistory;
     // }
-
-    public PlayerTurnManager getTurnManager() {
-        return this.playerTurnManager;
-    }
-
 
     public void startUp(){
          EventQueue.invokeLater(new Runnable() {
@@ -87,9 +85,17 @@ public class Game implements Subject { // Marishel : the game is the subject so 
         }
     }
 
-    public void setGameData(GameData data){
-        this.gameData = data;
+    public PlayerTurnManager getTurnManager(){
+        return this.playerTurnManager;
     }
+
+    public GameData getGameData(){
+        return this.gameData;
+    }
+
+    // public void setGameData(GameData data){
+    //     this.gameData = data;
+    // }
 
     // public void startGameSession(String gameId){
     //     //start history when game begins
