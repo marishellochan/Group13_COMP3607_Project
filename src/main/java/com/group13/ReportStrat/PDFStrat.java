@@ -5,15 +5,17 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
- // Concrete Strategy for PDF report generation using Apache PDFBox.
- // Simplified version without explicit font dependencies.
-
+/**
+ * Concrete Strategy for PDF report generation using Apache PDFBox.
+ */
 public class PDFStrat implements ReportStrat {
 
     private static final float MARGIN = 50;
@@ -101,9 +103,8 @@ public class PDFStrat implements ReportStrat {
      * Write a title line (large text).
      */
     private float writeTitle(PDPageContentStream stream, String text, float yPosition) throws IOException {
-        stream.setLeading(LINE_HEIGHT);
         stream.beginText();
-        stream.setFont(null, 16); // Uses default font
+        stream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 16);
         float xPosition = MARGIN + 100;
         stream.newLineAtOffset(xPosition, yPosition);
         stream.showText(text);
@@ -115,9 +116,8 @@ public class PDFStrat implements ReportStrat {
      * Write a section header.
      */
     private float writeHeader(PDPageContentStream stream, String text, float yPosition) throws IOException {
-        stream.setLeading(LINE_HEIGHT);
         stream.beginText();
-        stream.setFont(null, 12);
+        stream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 12);
         stream.newLineAtOffset(MARGIN, yPosition);
         stream.showText(text);
         stream.endText();
@@ -128,9 +128,12 @@ public class PDFStrat implements ReportStrat {
      * Write a regular line.
      */
     private float writeLine(PDPageContentStream stream, String text, float yPosition, boolean bold) throws IOException {
-        stream.setLeading(LINE_HEIGHT);
         stream.beginText();
-        stream.setFont(null, bold ? 11 : 10);
+        if (bold) {
+            stream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 11);
+        } else {
+            stream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
+        }
         stream.newLineAtOffset(MARGIN, yPosition);
         stream.showText(text);
         stream.endText();
