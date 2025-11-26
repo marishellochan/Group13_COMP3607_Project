@@ -1,0 +1,5 @@
+Category,Value,Question,OptionA,OptionB,OptionC,OptionD,CorrectAnswer
+Variables & Data Types,100,Which of the following declares an integer variable in C++?,int num;,float num;,num int;,integer num;,A
+Control Structures,200,What is the output of: if (5 > 10) cout << 'Hi'; else cout << 'Bye';,Hi,Bye,Error,Nothing,B
+Functions,300,What is the return type of int add(int a, int b)?,int,void,double,none,A
+Arrays,500,How many elements in int arr[3][4];?,7,12,3,4,B

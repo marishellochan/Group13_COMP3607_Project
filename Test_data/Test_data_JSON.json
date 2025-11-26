@@ -1,0 +1,50 @@
+[
+    {
+        "Category": "Variables & Data Types",
+        "Value": 100,
+        "Question": "Which of the following declares an integer variable in C++?",
+        "Options": {
+            "A": "int num;",
+            "B": "float num;",
+            "C": "num int;",
+            "D": "integer num;"
+        },
+        "CorrectAnswer": "A"
+    },
+    {
+        "Category": "Control Structures",
+        "Value": 200,
+        "Question": "What is the output of: if (5 > 10) cout << 'Hi'; else cout << 'Bye';",
+        "Options": {
+            "A": "Hi",
+            "B": "Bye",
+            "C": "Error",
+            "D": "Nothing"
+        },
+        "CorrectAnswer": "B"
+    },
+    {
+        "Category": "Functions",
+        "Value": 300,
+        "Question": "What is the return type of int add(int a, int b)?",
+        "Options": {
+            "A": "int",
+            "B": "void",
+            "C": "double",
+            "D": "none"
+        },
+        "CorrectAnswer": "A"
+    },
+    {
+        "Category": "Arrays",
+        "Value": 500,
+        "Question": "How many elements in int arr[3][4];?",
+        "Options": {
+            "A": "7",
+            "B": "12",
+            "C": "3",
+            "D": "4"
+        },
+        "CorrectAnswer": "B"
+    }
+]
