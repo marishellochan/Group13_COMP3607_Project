@@ -24,7 +24,7 @@ public class LoadDataXML extends TemplateLoadData {
     protected void readData() {
         System.out.println("Reading data from XML file...");
         try{
-            File filePath = new File("C:\\Users\\maris\\Downloads\\sample_game_XML.xml");
+            File filePath = new File("Group13_COMP3607_Project\\sample_data\\sample_game_XML.xml");
             factory = DocumentBuilderFactory.newInstance();
             builder = factory.newDocumentBuilder();
 

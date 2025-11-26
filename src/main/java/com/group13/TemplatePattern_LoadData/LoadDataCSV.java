@@ -23,7 +23,7 @@ public class LoadDataCSV extends TemplateLoadData {
         System.out.println("Reading data from CSV file...");
         try{
             lines = new ArrayList<>();
-            String filePath = "C:\\Users\\joncr\\Desktop\\everything\\oop proj\\Group13_COMP3607_Project\\sample_data\\sample_game_CSV.csv";
+            String filePath = "Group13_COMP3607_Project\\sample_data\\sample_game_CSV.csv";
             // Implementation for reading CSV file
             br = new BufferedReader(new FileReader(filePath));
             String line;
