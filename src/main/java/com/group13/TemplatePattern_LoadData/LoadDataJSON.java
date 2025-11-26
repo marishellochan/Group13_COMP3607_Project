@@ -25,7 +25,7 @@ public class LoadDataJSON extends TemplateLoadData {
         
         System.out.println("Reading data from JSON file...");
         try{
-            reader = new FileReader("Group13_COMP3607_Project\\sample_data\\sample_game_JSON.json");
+            reader = new FileReader("DataFiles/sample_game_JSON.json");
             JsonElement jsonElement = JsonParser.parseReader(reader);
 
             if (!jsonElement.isJsonArray()) {
