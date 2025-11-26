@@ -1,13 +1,11 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-null,System,Game Start up..,2025-11-26T12:42:30.584710100,null,0,null,null,0
-Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-null,System,Load Game Data,2025-11-26T12:42:32.449527100,null,0,null,null,0
-null,1,Enter Player Name,2025-11-26T12:42:39.089273100,null,0,null,null,0
-null,2,Enter Player Name,2025-11-26T12:42:39.090924,null,0,null,null,0
-null,1,Select Category,2025-11-26T12:42:40.678534300,Control Structures,0,null,null,0
-null,1,Select Question,2025-11-26T12:42:41.307807200,Control Structures,100,null,null,0
-null,1,Answer Question,2025-11-26T12:42:43.259206600,Control Structures,100,D,Incorrect,0
-null,2,Select Category,2025-11-26T12:42:45.227859300,Functions,0,null,null,0
-null,2,Select Question,2025-11-26T12:42:45.729946800,Functions,300,null,null,0
-null,2,Answer Question,2025-11-26T12:42:47.336294600,Functions,300,B,Incorrect,0
-null,System,Game Ended,2025-11-26T12:42:50.608603100,null,0,null,null,0
+1,System,Load Game Data,2025-11-26T12:54:37.032487600,null,0,null,null,0
+2,1,Enter Player Name,2025-11-26T12:54:42.640275100,null,0,null,null,0
+3,2,Enter Player Name,2025-11-26T12:54:42.642779300,null,0,null,null,0
+4,1,Select Category,2025-11-26T12:54:44.064034800,Variables & Data Types,0,null,null,0
+5,1,Select Question,2025-11-26T12:54:44.656364,Variables & Data Types,100,null,null,0
+6,1,Answer Question,2025-11-26T12:54:46.151355,Variables & Data Types,100,C,Incorrect,0
+7,2,Select Category,2025-11-26T12:54:48.795865500,Functions,0,null,null,0
+8,2,Select Question,2025-11-26T12:54:49.351408200,Functions,300,null,null,0
+9,2,Answer Question,2025-11-26T12:54:50.443421800,Functions,300,B,Incorrect,0
+10,System,Game Ended,2025-11-26T12:54:52.738858,null,0,null,null,0

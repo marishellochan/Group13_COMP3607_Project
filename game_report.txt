@@ -12,9 +12,9 @@ TURN-BY-TURN RUNDOWN:
 ----------------------------------------------------------------------------------------------------
 Turn 1:
   Player:        Marishel
-  Category:      Control Structures (100 points)
-  Question:      Which statement is used to make a decision?
-  Your Answer:   D
+  Category:      Variables & Data Types (100 points)
+  Question:      Which of the following declares an integer variable in C++?
+  Your Answer:   C
   Result:        ✗ INCORRECT
   Points Earned: 0
   Running Total: 0

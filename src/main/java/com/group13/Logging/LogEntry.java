@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class LogEntry {
     private static int caseCounter = 0; // Static counter for unique case IDs
-    private int caseId; // Unique case ID for each log entry
+    private int caseId ; // Unique case ID for each log entry
     private String playerId;
     private String time;
     private String activity;
@@ -15,7 +15,7 @@ public class LogEntry {
     private int score;
   
     public LogEntry() {
-        this.caseId = ++caseCounter; //for gamesession id
+        this.caseId = caseCounter++; //for gamesession id
         this.time = LocalDateTime.now().toString();
     }
 
@@ -78,9 +78,10 @@ public class LogEntry {
 
 
 
-    // public String getCaseId(){ 
-    //     return this.caseId;
-    // }
+    public int getCaseId(){ 
+        return this.caseId;
+    }
+
     public String getTime(){ return time;
     }
     public String getActivity(){ return activity;
@@ -112,6 +113,6 @@ public class LogEntry {
     }
     public void setActivity(String activity){ this.activity=activity;
     }
-
+    
 
 }

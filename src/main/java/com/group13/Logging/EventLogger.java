@@ -52,8 +52,8 @@ public class EventLogger implements Observer {
     public void updateLog(LogEntry entry){
         try{
             String time = LocalDateTime.now().toString(); //fix for current time
-            String line = String.format("%s,%s,%s,%s,%s,%d,%s,%s,%d\n",
-                    currentGameId, // fix for string game id
+            String line = String.format("%d,%s,%s,%s,%s,%d,%s,%s,%d\n",
+                    entry.getCaseId(), //use caseId from log entry
                     entry.getPlayerId(), 
                     entry.getActivity(), 
                     time, //for iso format
