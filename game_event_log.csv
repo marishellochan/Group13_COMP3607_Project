@@ -110,3 +110,8 @@ null,2,Score Updated,2025-11-25T18:53:44.069041100,null,0,null,null,200
 null,System,Game Start up..,2025-11-25T18:55:04.057358100,null,0,null,null,0
 null,System,Game Start up..,2025-11-25T18:55:22.493650200,null,0,null,null,0
 null,System,Load Game Data,2025-11-25T18:55:26.000073500,null,0,null,null,0
+TEST_GAME_001,System,Test Event,2025-11-25T23:01:11.801797300,null,0,null,null,null,System,Game Start up..,2025-11-25T23:09:32.539956900,null,0,null,null,0
+null,System,Load Game Data,2025-11-25T23:09:39.853615,null,0,null,null,0
+null,1,Enter Player Name,2025-11-25T23:09:47.055348200,null,0,null,null,0
+null,2,Enter Player Name,2025-11-25T23:09:47.056348200,null,0,null,null,0
+null,System,Game Ended,2025-11-25T23:10:27.044752100,null,0,null,null,0

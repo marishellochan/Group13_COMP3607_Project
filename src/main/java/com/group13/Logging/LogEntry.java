@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class LogEntry {
     private static int caseCounter = 0; // Static counter for unique case IDs
-    private static int caseId; // Unique case ID for each log entry
+    private int caseId; // Unique case ID for each log entry
     private String playerId;
     private String time;
     private String activity;
