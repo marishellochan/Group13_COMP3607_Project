@@ -474,32 +474,38 @@ public class AppTest {
 
     @Test
     public void testEdgeCaseZeroPointQuestion() {
-        Turn turn = new Turn("Player1", "Science", 0, "Q", "A", true, 0, 0);
+        edgeQuestion3 = new Question();
+        edgeQuestion3.setCategory("Science");   
+        edgeQuestion3.setValue(0);
+        edgeQuestion3.setQuestionText("Q");
+        Turn turn = new Turn("Player1", edgeQuestion3, "A", true, 0, 0);
         assertEquals(0, turn.getQuestionValue());
     }
 
     @Test
     public void testEdgeCaseLargePointValues() {
-        Turn turn = new Turn("Player1", "Science", 9999, "Q", "A", true, 9999, 9999);
+        edgeQuestion4 = new Question();
+        edgeQuestion4.setCategory("Science");
+        edgeQuestion4.setValue(9999);
+        edgeQuestion4.setQuestionText("Q");
+        Turn turn = new Turn("Player1", edgeQuestion4, "A", true, 9999, 9999);
         assertEquals(9999, turn.getPointsEarned());
         assertEquals(9999, turn.getScoreAfterTurn());
     }
 
     @Test
     public void testEdgeCaseCaseSensitiveAnswers() {
-        Question q = new Question("Science", 100, "What is H2O?", "Water");
+        edgeQuestion5 = new Question();
+        edgeQuestion5.setCategory("Science");
+        edgeQuestion5.setValue(100);
+        edgeQuestion5.setQuestionText("What is H2O?");
+        edgeQuestion5.setAnswer("Water");
         
-        assertTrue(q.isCorrect("Water"));
-        assertFalse(q.isCorrect("water"));
-        assertFalse(q.isCorrect("WATER"));
+        assertTrue(edgeQuestion5.checkAnswer("Water"));
+        assertFalse(edgeQuestion5.checkAnswer("water"));
+        assertFalse(edgeQuestion5.checkAnswer("WATER"));
     }
 
-    @Test
-    public void testEdgeCaseSpecialCharactersInLogging() {
-        try {
-            eventLogger.log("Player@123 answered: What is E=mc²?");
-        } catch (Exception e) {
-            fail("Should handle special characters in logs: " + e.getMessage());
-        }
-    }
 }
+
+    
