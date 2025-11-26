@@ -50,6 +50,10 @@ public class GameData {
         return values;
     }
 
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
     public List<Question> getQuestionsByCategory(String category) {
         List<Question> filteredQuestions = new ArrayList<>();
         for (Question q : questions) {

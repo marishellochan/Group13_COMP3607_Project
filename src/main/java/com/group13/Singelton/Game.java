@@ -52,6 +52,7 @@ public class Game implements Subject { // Marishel : the game is the subject so 
 		});
         LogEntry entry = LogEntry.createSystemEvent("Game Start up..");
         notifyEventLogger(entry);
+        EventLogger.getInstance().clearLog(); // clear previous logs on startup
     }
 
     public void load(TemplateLoadData template){

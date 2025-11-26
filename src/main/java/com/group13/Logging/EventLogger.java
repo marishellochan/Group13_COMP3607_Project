@@ -80,4 +80,23 @@ public class EventLogger implements Observer {
             System.out.println("Close error: "+e.getMessage());
         }
     }
+
+    public void clearLog() {
+        try {
+            writer.close();
+            File file = new File(logFile);
+            if (file.delete()) {
+                System.out.println("Log file deleted successfully.");
+            } else {
+                System.out.println("Failed to delete the log file.");
+            }
+            // Reinitialize the writer
+            writer = new FileWriter(logFile, true);
+            // Write headers again
+            writer.write("Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play\n");
+            writer.flush();
+        } catch (IOException e) {
+            System.out.println("Error clearing log file: " + e.getMessage());
+        }
+    }
 }
