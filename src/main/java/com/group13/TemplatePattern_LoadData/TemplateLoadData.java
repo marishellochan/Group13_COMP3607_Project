@@ -7,6 +7,11 @@ public abstract class TemplateLoadData {
     protected List<String[]> allGameData;
     protected List<String> lines;
     protected BufferedReader br;
+    protected String filePath;
+
+    public TemplateLoadData(String filePath) {
+        this.filePath = filePath;
+    }
     
     public final void loadData(){
         readData();

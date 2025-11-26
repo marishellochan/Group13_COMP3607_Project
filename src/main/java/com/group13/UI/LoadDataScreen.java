@@ -72,9 +72,9 @@ public class LoadDataScreen extends JPanel implements Screen {
 
     private TemplateLoadData createLoader(String type) {
         switch (type) {
-            case "XML":  return new LoadDataXML();
-            case "CSV":  return new LoadDataCSV();
-            case "JSON": return new LoadDataJSON();
+            case "XML":  return new LoadDataXML("DataFiles\\sample_game_XML.xml");
+            case "CSV":  return new LoadDataCSV("DataFiles\\sample_game_CSV.csv");
+            case "JSON": return new LoadDataJSON("DataFiles\\sample_game_JSON.json");
             default:     return null;
         }
     }

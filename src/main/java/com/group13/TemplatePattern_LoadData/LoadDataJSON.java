@@ -20,12 +20,18 @@ public class LoadDataJSON extends TemplateLoadData {
     protected JsonArray jsonArray;
     protected List<JsonObject> allQuestionObjects;
     private Reader reader;
+
+    public LoadDataJSON(String filePath) {
+        super(filePath);
+    }
+
     @Override
     protected void readData() throws JsonSyntaxException {
         
         System.out.println("Reading data from JSON file...");
         try{
-            reader = new FileReader("DataFiles/sample_game_JSON.json");
+            // reader = new FileReader("DataFiles/sample_game_JSON.json");
+            reader = new FileReader(filePath);
             JsonElement jsonElement = JsonParser.parseReader(reader);
 
             if (!jsonElement.isJsonArray()) {
