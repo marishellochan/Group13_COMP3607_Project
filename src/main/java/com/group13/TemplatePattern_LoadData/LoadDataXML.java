@@ -63,6 +63,7 @@ public class LoadDataXML extends TemplateLoadData {
                 String optionB = element.getElementsByTagName("OptionB").item(0).getTextContent();
                 String optionC = element.getElementsByTagName("OptionC").item(0).getTextContent();
                 String optionD = element.getElementsByTagName("OptionD").item(0).getTextContent();
+                String answer = element.getElementsByTagName("CorrectAnswer").item(0).getTextContent();
 
                 // Create Question object and add to GameData
                 Question question = new Question();
@@ -70,7 +71,7 @@ public class LoadDataXML extends TemplateLoadData {
                 question.setValue(value);
                 question.setQuestionText(questionText);
                 question.setOptions(optionA, optionB, optionC, optionD);
-                question.setAnswer(optionD);
+                question.setAnswer(answer);
                 gameData.addQuestion(question);
             }
         }
