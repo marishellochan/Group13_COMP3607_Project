@@ -20,15 +20,19 @@ public class LoadDataXML extends TemplateLoadData {
     private DocumentBuilder builder;
     private Document document;
 
+    public LoadDataXML(String filePath) {
+        super(filePath);
+    }
+
     @Override
     protected void readData() {
         System.out.println("Reading data from XML file...");
         try{
-            File filePath = new File("DataFiles/sample_game_XML.xml");
+            File file = new File(filePath);
             factory = DocumentBuilderFactory.newInstance();
             builder = factory.newDocumentBuilder();
 
-            document = builder.parse(filePath);
+            document = builder.parse(file);
             document.getDocumentElement().normalize();
 
             System.out.println("Root element: " + document.getDocumentElement().getNodeName());
