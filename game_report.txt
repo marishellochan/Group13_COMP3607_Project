@@ -1,0 +1,33 @@
+====================================================================================================
+GAME REPORT
+====================================================================================================
+
+FINAL SCORES:
+----------------------------------------------------------------------------------------------------
+  Darren                         0
+  Marishel                       0
+
+
+TURN-BY-TURN RUNDOWN:
+----------------------------------------------------------------------------------------------------
+Turn 1:
+  Player:        Marishel
+  Category:      Control Structures (100 points)
+  Question:      Which statement is used to make a decision?
+  Your Answer:   D
+  Result:        ✗ INCORRECT
+  Points Earned: 0
+  Running Total: 0
+
+Turn 2:
+  Player:        Darren
+  Category:      Functions (300 points)
+  Question:      What is the return type of int add(int a, int b)?
+  Your Answer:   B
+  Result:        ✗ INCORRECT
+  Points Earned: 0
+  Running Total: 0
+
+----------------------------------------------------------------------------------------------------
+Total Turns: 2
+====================================================================================================

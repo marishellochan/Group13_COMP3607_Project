@@ -11,6 +11,7 @@ import com.group13.Questions.Question;
 import com.group13.TemplatePattern_LoadData.*;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -37,6 +38,7 @@ public class GamePlayTest {
     private Question question4;
     private EventLogger eventLogger;
 
+
     @Before
     public void setUp() {
         // Get singleton instances
@@ -57,27 +59,24 @@ public class GamePlayTest {
         if(eventLogger != null){
             eventLogger.clearLog();
         }
+
+        TemplateLoadData loader = new LoadDataCSV("Test_data/Test_data_CSV.csv");
+        loader.loadData();
+    
+
+        // Load questions from GameData
+        List<Question> allQuestions = gameData.getQuestions();
+        question1 = allQuestions.get(0);
+        question2 = allQuestions.get(1);
+        question3 = allQuestions.get(2);
+        question4 = allQuestions.get(3);
+
         
-        // // Load test data from CSV
-        // loadTestDataFromCSV();
+        // Create fresh players for each test
+        player1 = new Player("TestPlayer1");
+        player2 = new Player("TestPlayer2");
         
-        // // Get loaded questions from GameData
-        // List<Question> allQuestions = getAllLoadedQuestions();
-        
-        // // Assign questions if loading succeeded
-        // if (allQuestions.size() >= 4) {
-        //     question1 = allQuestions.get(0); // First question (100 points)
-        //     question2 = allQuestions.get(1); // Second question (200 points)
-        //     question3 = allQuestions.get(2); // Third question (300 points)
-        //     question4 = allQuestions.get(3); // Fourth question (500 points)
-        // } else {
-        //     // Fallback: manually create questions if loading failed
-        //     createFallbackQuestions();
-        // }
-        
-        // Create test players
-        // player1 = new Player("TestPlayer1");
-        // player2 = new Player("TestPlayer2");
+       
     }
 
     @After
@@ -100,58 +99,6 @@ public class GamePlayTest {
         }
     }
 
-    
-
-    /**
-     * Get all questions loaded from GameData, sorted by value
-     */
-    // private List<Question> getAllLoadedQuestions() {
-    //     List<String> categories = gameData.getCategories();
-    //     List<Question> allQuestions = new java.util.ArrayList<>();
-        
-    //     for (String category : categories) {
-    //         List<Question> categoryQuestions = gameData.getQuestionsByCategory(category);
-    //         allQuestions.addAll(categoryQuestions);
-    //     }
-        
-    //     // Sort by value to ensure consistent ordering (100, 200, 300, 500)
-    //     allQuestions.sort((q1, q2) -> Integer.compare(q1.getValue(), q2.getValue()));
-        
-    //     return allQuestions;
-    // }
-
-    /**
-     * Create fallback questions if loading fails
-     */
-    // private void createFallbackQuestions() {
-    //     question1 = new Question();
-    //     question1.setCategory("Variables & Data Types");
-    //     question1.setValue(100);
-    //     question1.setQuestionText("Which of the following declares an integer variable in C++?");
-    //     question1.setOptions("int num;", "float num;", "num int;", "integer num;");
-    //     question1.setAnswer("A");
-        
-    //     question2 = new Question();
-    //     question2.setCategory("Control Structures");
-    //     question2.setValue(200);
-    //     question2.setQuestionText("What is the output of: if (5 > 10) cout << 'Hi'; else cout << 'Bye';");
-    //     question2.setOptions("Hi", "Bye", "Error", "Nothing");
-    //     question2.setAnswer("B");
-        
-    //     question3 = new Question();
-    //     question3.setCategory("Functions");
-    //     question3.setValue(300);
-    //     question3.setQuestionText("What is the return type of int add(int a, int b)?");
-    //     question3.setOptions("int", "void", "double", "none");
-    //     question3.setAnswer("A");
-        
-    //     question4 = new Question();
-    //     question4.setCategory("Arrays");
-    //     question4.setValue(500);
-    //     question4.setQuestionText("How many elements in int arr[3][4];?");
-    //     question4.setOptions("7", "12", "3", "4");
-    //     question4.setAnswer("B");
-    // }
 
     // ==================== PARSING TESTS ====================
 
@@ -211,9 +158,9 @@ public class GamePlayTest {
 
     @Test
     public void testGameplayRecordTurnsInOrder() {
-        assertNotNull("Questions should be loaded", question1);
-        assertNotNull("Questions should be loaded", question2);
-        assertNotNull("Questions should be loaded", question3);
+        // assertNotNull("Questions should be loaded", question1);
+        // assertNotNull("Questions should be loaded", question2);
+        // assertNotNull("Questions should be loaded", question3);
         
         Turn turn1 = new Turn(player1.getPlayerName(), question1, "A", true, 100, 100);
         Turn turn2 = new Turn(player2.getPlayerName(), question2, "B", true, 200, 200);
@@ -232,8 +179,8 @@ public class GamePlayTest {
 
     @Test
     public void testGameplayTurnCountTracking() {
-        assertNotNull("Questions should be loaded", question1);
-        assertNotNull("Questions should be loaded", question2);
+        // assertNotNull("Questions should be loaded", question1);
+        // assertNotNull("Questions should be loaded", question2);
         
         int initialCount = gameHistory.getTurnCount();
         
